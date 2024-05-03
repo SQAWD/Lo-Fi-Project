@@ -15,7 +15,7 @@ MonoBehaviour:
   version: 1
   sku: 6634340841e1a83e9658a03c
   packageName: MAIN - Lo Fi Girl
-  thumbnail: {fileID: 2800000, guid: c2f413189e77b4f86b1efdcda50b0293, type: 3}
+  thumbnail: {fileID: 2800000, guid: abca0c3c48f86489ea06bbe8d51ec55d, type: 3}
   savedProjectSettings: {fileID: 11400000, guid: b4d3f3931508d4e3381693ee23f6fe04,
     type: 2}
   worldID: 8npuhm491fv3lc7dseut6
