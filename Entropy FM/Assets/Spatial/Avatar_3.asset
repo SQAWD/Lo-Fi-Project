@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97d8f4ae859ad41cdb0be1de8473a06a, type: 3}
+  m_Name: Avatar_3
+  m_EditorClassIdentifier: 
+  version: 0
+  sku: 664ba615d4843a08c96b8bfe
+  packageName: World Sparky
+  thumbnail: {fileID: 2800000, guid: f6d31594336c34b1497b8cecdd1f1be9, type: 3}
+  savedProjectSettings: {fileID: 11400000, guid: b4d3f3931508d4e3381693ee23f6fe04,
+    type: 2}
+  prefab: {fileID: -431634781137023257, guid: 3a0951fabcbc9454a80c2f84ef0a7e1c, type: 3}
+  usageContext: 1
+  category: 4
