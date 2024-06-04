@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
-public class OverlayFader : MonoBehaviour
+public class FadeUI : MonoBehaviour
 {
     public Image overlay;
     public float fadeDuration = 1.0f;
