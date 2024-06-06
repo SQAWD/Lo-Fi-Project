@@ -20,8 +20,10 @@ MonoBehaviour:
     type: 2}
   worldID: 8npuhm491fv3lc7dseut6
   scene: {fileID: 102900000, guid: 986cf2e8d77714abf9ad1c51aec7bd1f, type: 3}
-  csharpAssembly: {fileID: 0}
+  csharpAssembly: {fileID: 5897886265953266890, guid: 7ca87c58d12b94f44a4e2a3940ba2538,
+    type: 3}
   embeddedPackageAssets: []
+  networkPrefabs: []
   settings:
     serverInstancingEnabled: 1
     serverCapacitySetting: 1
