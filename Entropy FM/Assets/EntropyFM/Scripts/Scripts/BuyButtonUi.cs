@@ -28,6 +28,9 @@ public class BuyButtonUi : MonoBehaviour
         shopCart.onCartUpdated.AddListener(UpdateUI);
         // Initial UI update.
         UpdateUI();
+
+        // Add a listener to the buy button.
+        buyButton.onClick.AddListener(OnBuyButtonClick);
     }
 
     void UpdateUI()
@@ -40,10 +43,34 @@ public class BuyButtonUi : MonoBehaviour
         if (itemCount > 0)
         {
             buyButtonImage.sprite = activeBuyButtonSprite;
+            buyButton.interactable = true;
         }
         else
         {
             buyButtonImage.sprite = inactiveBuyButtonSprite;
+            buyButton.interactable = false;
         }
     }
+
+    void OnBuyButtonClick()
+    {
+        // Trigger purchase sequence for each item in the cart.
+        foreach (ItemSO item in shopCart.cartItems)
+        {
+            // Call the toolkit's PurchaseItem method.
+            PurchaseItem(item.itemID, 1, false);
+        }
+
+        // Clear the cart after purchase.
+        shopCart.ClearCart();
+    }
+
+    void PurchaseItem(string itemID, ulong amount = 1, bool silent = false)
+    {
+
+        Debug.Log("Purchased item with ID: " + itemID);
+        SpatialBridge.marketplaceService.PurchaseItem(itemID);
+        new PurchaseItemRequest();
+    }
+    
 }

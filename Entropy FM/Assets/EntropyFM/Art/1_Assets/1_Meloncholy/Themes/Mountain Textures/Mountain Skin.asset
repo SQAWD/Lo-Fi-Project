@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6297abaf75cd4f2182e4465e2eacbb2, type: 3}
+  m_Name: Mountain Skin
+  m_EditorClassIdentifier: 
+  name: Mountains
+  isPurchased: 0
+  itemType: 1
+  themeType: 0
+  itemID: wkczq33e2nyox8e7ikh7e
+  cost: 1200
+  thumbnail: {fileID: 21300000, guid: aa0574a08b9e146839154744755a3c42, type: 3}
+  model: {fileID: 0}
+  ThemelayerOne: {fileID: 2800000, guid: 43e5947505ef64d59a390a46b4384576, type: 3}
+  ThemelayerTwo: {fileID: 2800000, guid: 7e5adb6c718e1466aa205be6af74f7cc, type: 3}
+  ThemelayerThree: {fileID: 2800000, guid: 27461de25448d4f7492e286cc1c02f9d, type: 3}
+  ThemelayerFour: {fileID: 2800000, guid: 3f42c5f08af0b41908525973b48ab264, type: 3}
+  ThemelayerFive: {fileID: 2800000, guid: 02a14f81ef1a244d1a16077e26ea9b87, type: 3}
+  ThemeWall: {fileID: 2800000, guid: 123072bc7cb7b4a22a819302dc759b66, type: 3}
+  Sound: {fileID: 0}

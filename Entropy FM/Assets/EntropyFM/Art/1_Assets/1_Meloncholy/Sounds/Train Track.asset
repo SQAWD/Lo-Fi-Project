@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6297abaf75cd4f2182e4465e2eacbb2, type: 3}
+  m_Name: Train Track
+  m_EditorClassIdentifier: 
+  name: Train Track
+  isPurchased: 0
+  itemType: 2
+  themeType: 0
+  itemID: 181920
+  cost: 50
+  thumbnail: {fileID: 21300000, guid: 9aa4306431f044bf4a8bf4f8cca31e02, type: 3}
+  model: {fileID: 0}
+  ThemelayerOne: {fileID: 0}
+  ThemelayerTwo: {fileID: 0}
+  ThemelayerThree: {fileID: 0}
+  ThemelayerFour: {fileID: 0}
+  ThemelayerFive: {fileID: 0}
+  ThemeWall: {fileID: 0}
+  SoundFilterOverlayColor: {r: 1, g: 1, b: 1, a: 1}
+  Sound: {fileID: 8300000, guid: c7d45cb8e78fb4a5abcd88ef7c156ed4, type: 3}
+  SoundFilterSpeed: 1
+  SoundFilterSprite: []
