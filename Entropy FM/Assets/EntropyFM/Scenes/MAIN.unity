@@ -4433,7 +4433,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 490.79953, y: -464.906}
-  m_SizeDelta: {x: 1920, y: 968.343}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &435867812
 MonoBehaviour:
@@ -4448,7 +4448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5603,6 +5603,7 @@ GameObject:
   m_Component:
   - component: {fileID: 631827378}
   - component: {fileID: 631827381}
+  - component: {fileID: 631827382}
   m_Layer: 5
   m_Name: Music Player UI
   m_TagString: Untagged
@@ -5641,6 +5642,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 631827377}
   m_CullTransparentMesh: 1
+--- !u!114 &631827382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631827377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10d3ecd21d63f466cbe4276d0aa4e04c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AlbumButton: {fileID: 1955042783}
+  ContactUsButton: {fileID: 1603292395}
+  AdvancedOptionsHotkey: 13
+  AdvancedOptionsController: {fileID: 535701176}
+  AdvancedOptionsObject: {fileID: 535701172}
+  MuteButton: {fileID: 1725280696}
+  MusicHotkey: 32
+  MutedOverlay: {fileID: 2030381216}
+  MusicAudioSource: {fileID: 2101506971}
+  MusicVolume: 0
+  MusicSlider: 0
+  isMusicMuted: 0
+  SoundButton: {fileID: 0}
+  SoundVolume: 0
+  SoundSlider: 0
+  isSoundMuted: 0
 --- !u!1 &633416180
 GameObject:
   m_ObjectHideFlags: 0
@@ -5776,7 +5805,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Music Volume
+  m_text: Master Volume
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1649aed2653634058b6b52936f4bf740, type: 2}
   m_sharedMaterial: {fileID: -6876513197601628681, guid: 1649aed2653634058b6b52936f4bf740,
@@ -6623,7 +6652,7 @@ GameObject:
   - component: {fileID: 824448013}
   m_Layer: 0
   m_Name: SCENE (w/Shake Anim)
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8168,7 +8197,7 @@ GameObject:
   - component: {fileID: 1001990468}
   m_Layer: 0
   m_Name: UI
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8998,7 +9027,7 @@ GameObject:
   - component: {fileID: 1162855229}
   m_Layer: 5
   m_Name: Click Targets
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11374,7 +11403,7 @@ GameObject:
   - component: {fileID: 1475504106}
   m_Layer: 0
   m_Name: BACKGROUND
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12519,7 +12548,7 @@ GameObject:
   - component: {fileID: 1594911983}
   m_Layer: 0
   m_Name: LIGHTS
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12700,7 +12729,7 @@ GameObject:
   - component: {fileID: 1603292393}
   - component: {fileID: 1603292395}
   m_Layer: 5
-  m_Name: Hotkey
+  m_Name: Contact Us
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13796,7 +13825,7 @@ GameObject:
   - component: {fileID: 1750688171}
   m_Layer: 0
   m_Name: SPATIAL COMPONENTS
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
