@@ -9,6 +9,9 @@ using System.Xml.Serialization;
 
 public class MusicPlayer : MonoBehaviour
 {
+    [Header("MusicPlayerManager")]
+    public MusicPlayerManager MusicPlayerManager;
+
     [Header("Buttons")]
     public Button AlbumButton;
     public Button ContactUsButton;
@@ -33,6 +36,10 @@ public class MusicPlayer : MonoBehaviour
     public AudioSource MusicAudioSource;
     [SerializeField] float MusicVolume;
     [SerializeField] int MusicSlider;
+    public Image AlbumCover;
+    public TMP_Text ArtistNameText;
+    public TMP_Text PlaylistNameText;
+    private String AlbumLink;
     public bool isMusicMuted;
      private const int minMusicSliderValue = 0;
     private const int maxMusicSliderValue = 5;
@@ -53,9 +60,9 @@ public class MusicPlayer : MonoBehaviour
     {
 
         InitializeButtons();
-        AdvancedOptionsController = AdvancedOptionsObject.GetComponent<Animator>();
-
         UpdateVolume();
+        UpdateMusicAudioSource();
+        AdvancedOptionsController = AdvancedOptionsObject.GetComponent<Animator>();
     }
 
      void Update()
@@ -63,10 +70,28 @@ public class MusicPlayer : MonoBehaviour
         CheckHotkeys();
         MusicSliderNum.text = MusicSlider.ToString();
         MusicVolume = MusicAudioSource.volume;
-
         SoundSliderNum.text = SoundSlider.ToString();
         SoundVolume = SoundAudioSource.volume;
+        
+    }
 
+    public void UpdateMusicPlayerUI(PlaylistSO song)
+    {
+        ArtistNameText.text = song.Artist;
+        AlbumCover.sprite = song.AlbumCover;
+        AlbumLink = song.AlbumLink;
+        PlaylistNameText.text = song.Title;
+        Debug.Log("UpdateSongUi");
+    }
+
+    void UpdateMusicAudioSource()
+    {
+        Debug.Log("UpdateMusicAudioSource");
+        if (MusicPlayerManager != null && MusicPlayerManager.CurrentPlaylist != null)
+    {
+        MusicAudioSource.clip = MusicPlayerManager.CurrentPlaylist.AudioFile;
+        MusicAudioSource.Play();
+    }
     }
 
     private void InitializeButtons()
@@ -74,6 +99,7 @@ public class MusicPlayer : MonoBehaviour
         MusicDecreaseButton.onClick.AddListener(DecreaseMusicVolume);
         SoundDecreaseButton.onClick.AddListener(DecreaseSoundVolume);
         MuteButton.onClick.AddListener(ButtonPressed_Music);
+        SoundButton.onClick.AddListener(ButtonPressed_Sound);
         AlbumButton.onClick.AddListener(ButtonPressed_Album);
         ContactUsButton.onClick.AddListener(ButtonPressed_ContactUs);
         MusicIncreaseButton.onClick.AddListener(IncreaseMusicVolume);
@@ -83,6 +109,11 @@ public class MusicPlayer : MonoBehaviour
     void ButtonPressed_Music()
     {
         ToggleMusicMute();
+    }
+
+    void ButtonPressed_Sound()
+    {
+        ToggleSoundMute();
     }
 
     void IncreaseMusicVolume()
@@ -157,7 +188,7 @@ public class MusicPlayer : MonoBehaviour
 
     void ButtonPressed_Album()
     {
-        SpatialBridge.spaceService.OpenURL("https://open.spotify.com/user/31x4nhmpfywcn32e4dgtgoczcway");
+        SpatialBridge.spaceService.OpenURL(AlbumLink);
         Debug.Log("Album Click");
     }
 
@@ -176,6 +207,22 @@ public class MusicPlayer : MonoBehaviour
         }
     }
 
+    void ToggleSoundMute()
+    {
+        isSoundMuted = !isSoundMuted;
+
+        if (isSoundMuted)
+        {
+            SoundAudioSource.volume = 0;
+            Debug.Log("IsSoundMuted TRUE");
+        }
+        else
+        {
+            SoundAudioSource.volume = 1f / maxSoundSliderValue * SoundSlider;
+            Debug.Log("IsMuted FALSE");
+        }
+    }
+
     void ToggleMusicMute()
     {
         isMusicMuted = !isMusicMuted;
@@ -183,12 +230,14 @@ public class MusicPlayer : MonoBehaviour
         if (isMusicMuted)
         {
             MusicAudioSource.volume = 0;
+            SoundAudioSource.volume = 0;
             MutedOverlay.SetActive(true);
             Debug.Log("IsMuted TRUE");
         }
         else
         {
-            MusicAudioSource.volume = 1;
+            SoundAudioSource.volume = 1f / maxSoundSliderValue * SoundSlider;
+            MusicAudioSource.volume = 1f / maxMusicSliderValue * MusicSlider;;
             MutedOverlay.SetActive(false);
             Debug.Log("IsMuted FALSE");
         }

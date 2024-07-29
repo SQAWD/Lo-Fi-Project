@@ -7,11 +7,13 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "ItemMenu", menuName = "New Item")]
 public class ItemSO : ScriptableObject
 {
+    [Header("General")]
     public new string name;
     public bool isPurchased; 
 
     public ItemType itemType;
 
+    [Header("Theme Settings")]
     public ThemeType themeType;
     public string itemID;
     public int cost; 
@@ -19,6 +21,7 @@ public class ItemSO : ScriptableObject
 
     public GameObject model;
 
+    [Header("Moving Textures")]
     public Texture ThemelayerOne;
     public Texture ThemelayerTwo;
     public Texture ThemelayerThree;
@@ -26,6 +29,8 @@ public class ItemSO : ScriptableObject
     public Texture ThemelayerFive;
     public Texture ThemeWall;
 
+
+    [Header("Sounds Settings")]
     public Color SoundFilterOverlayColor = Color.white; // Default to white color
     public AudioClip Sound;
     public int SoundFilterSpeed = 25; // Default value set to 25

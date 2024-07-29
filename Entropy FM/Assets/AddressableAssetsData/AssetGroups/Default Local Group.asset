@@ -16,7 +16,12 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 6fa99249abaa94819a549a96e02d2678
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: a99c10ed6985b49fab68d74778ffa107
+    m_Address: Assets/EntropyFM/Art/2_Animations/Mute Button/Mute Button 2.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 6744dcfdda96c4f0898d7ea1e2159996, type: 2}
   m_SchemaSet:
