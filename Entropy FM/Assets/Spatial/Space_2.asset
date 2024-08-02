@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Space_2
   m_EditorClassIdentifier: 
   version: 1
-  sku: 
+  sku: 66a860f3b5f964358b434e3b
   packageName: EntropyFM 2
-  thumbnail: {fileID: 2800000, guid: ec6e61a8993a64290991cfc322ec43ea, type: 3}
+  thumbnail: {fileID: 2800000, guid: 9331ced9b65a34a01a18d6739167b630, type: 3}
   savedProjectSettings: {fileID: 11400000, guid: b4d3f3931508d4e3381693ee23f6fe04,
     type: 2}
-  worldID: 
-  scene: {fileID: 102900000, guid: ea2566aa328af4c52936051f70f6d0e0, type: 3}
+  worldID: 8npuhm491fv3lc7dseut6
+  scene: {fileID: 102900000, guid: a9a145b3aadf643ca9c415136824f0d4, type: 3}
   csharpAssembly: {fileID: 5897886265953266890, guid: a3e27cef80acc4a839e2d8afc941c989,
     type: 3}
   embeddedPackageAssets: []

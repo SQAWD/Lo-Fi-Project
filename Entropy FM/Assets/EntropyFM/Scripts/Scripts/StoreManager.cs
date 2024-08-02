@@ -5,23 +5,42 @@ using UnityEngine.UI;
 
 public class StoreManager : MonoBehaviour
 {
-    public List<ItemSO> storeInventory = new List<ItemSO>();
+    [Header("Stuff")]
     public ThemeType selectedTheme;
-
-    public GameObject itemPrefab;
-    public GameObject themePrefab;
-    public GameObject soundPrefab;
-
-    public Transform itemPanel;
-    public Transform themePanel;
-    public Transform soundPanel;
-
+    public KeyCode OpenStoreHotkey = KeyCode.P;
     public ShopCart shopCart;
     public ItemManager itemManager;
+    public Animator StoreAnimationController;
+    public List<ItemSO> storeInventory = new List<ItemSO>();
+    
+
+    [Header("Store Prefabs")]
+    public GameObject themePrefab;
+    public GameObject itemPrefab;
+    public GameObject soundPrefab;
+
+    [Header("Store Panels")]
+    public Transform themePanel;
+    public Transform itemPanel;
+    public Transform soundPanel;
 
     void Start()
     {
         PopulateStore();
+    }
+
+    void Update()
+    {
+        CheckHotkeys();
+    }
+
+    void CheckHotkeys()
+    {
+         if (Input.GetKeyDown(OpenStoreHotkey))
+        {
+            StoreAnimationController.SetTrigger("Select");
+            Debug.Log("OpenAdvancedOptions");
+        }
     }
 
     void PopulateStore()
@@ -84,6 +103,7 @@ public class StoreManager : MonoBehaviour
             }
         }
     }
+
 
     public void ChangeThemeFilter(ThemeType newTheme)
     {
