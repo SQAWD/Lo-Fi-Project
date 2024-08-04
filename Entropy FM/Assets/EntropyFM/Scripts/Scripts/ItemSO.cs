@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "ItemMenu", menuName = "New Item")]
+//[CreateAssetMenu(fileName = "ItemMenu", menuName = "old Item")]
 public class ItemSO : ScriptableObject
 {
     [Header("General")]

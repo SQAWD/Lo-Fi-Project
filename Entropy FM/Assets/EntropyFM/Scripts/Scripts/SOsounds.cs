@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SOsound", menuName = "New SOsound")]
+[CreateAssetMenu(fileName = "SoundMenu", menuName = "New Sound")]
 public class SOsounds : ScriptableObject
 {
     [Header("General")]
