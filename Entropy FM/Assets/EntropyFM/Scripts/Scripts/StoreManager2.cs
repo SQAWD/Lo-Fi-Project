@@ -8,8 +8,7 @@ public class StoreManager2 : MonoBehaviour
     [Header("General")]
      public ThemeType selectedTheme;
     public KeyCode OpenStoreHotkey = KeyCode.B;
-    public ShopCart shopCart;
-    public ItemManager itemManager;
+    public ItemManager2 itemManager2;
     public Animator StoreAnimationController;
     public List<SOthemes> StoreThemeInventory = new List<SOthemes>();
     public List<SOitems> StoreItemInventory = new List<SOitems>();
@@ -75,11 +74,23 @@ public class StoreManager2 : MonoBehaviour
 
                 UIthemes.GetComponent<Button>().onClick.AddListener(() => 
                     {
-                        SelectedToSelectedList();
-
-                        if (itemManager != null)
+                        if (itemManager2 != null)
                         {
-                            //itemManager.ToggleSelection(itemSO);
+                            if (theme.purchased == false)
+                            {
+                                ThemeToPreviewList(theme);
+                                Debug.LogError("AddThemeToPreviewList");
+                            }
+
+                            if (theme.purchased == true)
+                            {
+                                Debug.LogError("AddThemeToSelectedList");
+                            }
+                            
+                        }
+                        else
+                        {
+                             Debug.LogError("No ItemManager within StoreManager ");
                         }
                     });
             }
@@ -127,12 +138,33 @@ public class StoreManager2 : MonoBehaviour
             GameObject instantiatedSound = Instantiate(soundPrefab, soundPanel);
 
             // Access the UIsounds script within the instantiated prefab
-            UIsounds uiSounds = instantiatedSound.GetComponent<UIsounds>();
+            UIsounds UISounds = instantiatedSound.GetComponent<UIsounds>();
 
             // Set the 'sound' property of the UIsounds script to match the listed object
-            if (uiSounds != null)
+            if (UISounds != null)
             {
-                uiSounds.sound = sound;
+                UISounds.sound = sound;
+
+                 UISounds.GetComponent<Button>().onClick.AddListener(() => 
+                    {
+                        if (itemManager2 != null)
+                        {
+                            if (sound.purchased == false)
+                            {
+                                SoundToSelectedList(sound);
+                            }
+
+                            if (sound.purchased == true)
+                            {
+                                Debug.LogError("AddThemeToSelectedList");
+                            }
+                            
+                        }
+                        else
+                        {
+                             Debug.LogError("No ItemManager within StoreManager ");
+                        }
+                    });
             }
 
             // Place the instantiated item within the transform provided by the soundPanel property
@@ -143,8 +175,14 @@ public class StoreManager2 : MonoBehaviour
     }
 
 
-    void SelectedToSelectedList()
+    void ThemeToPreviewList(SOthemes theme)
     {
-        
+        itemManager2.ThemeToPreviewList(theme);
     }
+    
+    void SoundToSelectedList(SOsounds sound)
+    {
+        itemManager2.AddSoundToSelectedList(sound);
+    }
+
 }

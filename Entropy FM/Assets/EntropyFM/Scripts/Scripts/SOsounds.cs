@@ -14,7 +14,7 @@ public class SOsounds : ScriptableObject
 
     [Header("Properties")]
     public Color SoundFilterOverlayColor = Color.white; // Default to white color
-    public AudioClip Sound;
+    public AudioClip SoundFile;
     public int SoundFilterSpeed = 25; // Default value set to 25
     public Sprite[] SoundFilterSprite;
 

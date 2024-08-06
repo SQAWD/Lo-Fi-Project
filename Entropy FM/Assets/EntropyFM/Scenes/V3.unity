@@ -776,7 +776,7 @@ RectTransform:
   m_Children:
   - {fileID: 402389568}
   m_Father: {fileID: 1513214605}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
@@ -5581,7 +5581,7 @@ GameObject:
   - component: {fileID: 494800001}
   - component: {fileID: 494800000}
   m_Layer: 0
-  m_Name: 'Layer 3_(1.25x Speed) '
+  m_Name: Layer 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8132,57 +8132,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &730626311
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 730626313}
-  - component: {fileID: 730626312}
-  m_Layer: 0
-  m_Name: Shop Cart Manager 2
-  m_TagString: Untagged
-  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &730626312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 730626311}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e674efa7da0a141bcad54d6cd256e877, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cartItems: []
-  maxThemes: 1
-  maxItems: 3
-  maxSounds: 1
-  onCartUpdated:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!4 &730626313
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 730626311}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -64.09791, y: -185.85014, z: -788.3092}
-  m_LocalScale: {x: 1.904762, y: 1.904762, z: 1.904762}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1513214605}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &740965902
 GameObject:
   m_ObjectHideFlags: 0
@@ -9861,7 +9810,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8436f502b09f4af58dc5a6e5408937e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SelectedThemes: []
+  SelectedThemelayerOne: {fileID: 2100000, guid: 45a651474c9c846efabd42fffa7367f1,
+    type: 2}
+  SelectedThemelayerTwo: {fileID: 2100000, guid: 4c5da88bfd0914e3396095ea5b5e01c9,
+    type: 2}
+  SelectedThemelayerThree: {fileID: 2100000, guid: 5ca7e42cf31b44e4e80cc5fd161a91cd,
+    type: 2}
+  SelectedThemelayerFour: {fileID: 2100000, guid: 3557d4b8dc0f44b918613a9691c8904a,
+    type: 2}
+  SelectedThemelayerFive: {fileID: 2100000, guid: cb6179f72e30747eb874c4550bf2a44d,
+    type: 2}
+  ItemZone1: {fileID: 549845365}
+  ItemZone2: {fileID: 315342852}
+  ItemZone3: {fileID: 1313958309}
+  SelectedSound: {fileID: 1032581183}
+  ShopCartPreviewThemesList: []
+  ShopCartPreviewItemsList: []
+  ShopCartPreviewSoundsList: []
+  SelectedThemesList:
+  - {fileID: 11400000, guid: 8dee477128d4140aab8ee2c8afb092c9, type: 2}
+  SelectedItemsList:
+  - {fileID: 11400000, guid: 4e56c54f9cb4346c4a5938d715f83773, type: 2}
+  SelectedSoundsList:
+  - {fileID: 11400000, guid: c9d9db3b78b9c4aa597b7f0d1e2c7b06, type: 2}
 --- !u!1 &875046947
 GameObject:
   m_ObjectHideFlags: 0
@@ -10625,7 +10596,7 @@ GameObject:
   - component: {fileID: 956663362}
   - component: {fileID: 956663361}
   m_Layer: 0
-  m_Name: 'Layer 4_(1.5x Speed) '
+  m_Name: Layer 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11404,7 +11375,7 @@ GameObject:
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1019820408
 Transform:
   m_ObjectHideFlags: 0
@@ -11777,7 +11748,7 @@ GameObject:
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1032581181
 Transform:
   m_ObjectHideFlags: 0
@@ -12142,7 +12113,7 @@ GameObject:
   - component: {fileID: 1069534581}
   - component: {fileID: 1069534580}
   m_Layer: 0
-  m_Name: 'Layer 5_(1.05x Speed) '
+  m_Name: Layer 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16891,7 +16862,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 841755747}
-  - {fileID: 730626313}
   - {fileID: 1590001451}
   - {fileID: 58651960}
   m_Father: {fileID: 759660234}
@@ -16977,8 +16947,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedTheme: 0
   OpenStoreHotkey: 98
-  shopCart: {fileID: 730626312}
-  itemManager: {fileID: 0}
+  itemManager2: {fileID: 841755748}
   StoreAnimationController: {fileID: 402389570}
   StoreThemeInventory:
   - {fileID: 11400000, guid: e0a0f5af410894f83b4f199bb38f1e0b, type: 2}
@@ -17764,7 +17733,7 @@ Transform:
   - {fileID: 315342852}
   - {fileID: 1313958309}
   m_Father: {fileID: 1513214605}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1598285233
 GameObject:
@@ -18064,7 +18033,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 16, y: 0}
   m_SizeDelta: {x: 32, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1637098708
@@ -18380,7 +18349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9625508d09ca34054b0f81cfb26a3b0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shopCart: {fileID: 730626312}
+  shopCart: {fileID: 0}
   buyButton: {fileID: 1706192011}
   buyButtonImage: {fileID: 1706192012}
   activeBuyButtonSprite: {fileID: 21300000, guid: c6d75f2e0388a4b599223ca11165b75d,
@@ -20144,7 +20113,7 @@ GameObject:
   - component: {fileID: 1926776633}
   - component: {fileID: 1926776632}
   m_Layer: 0
-  m_Name: 'Layer 5_(2x Speed) '
+  m_Name: Layer 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22284,7 +22253,7 @@ GameObject:
   - component: {fileID: 2070618388}
   - component: {fileID: 2070618387}
   m_Layer: 0
-  m_Name: Layer 2_(0 Speed)
+  m_Name: Layer 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -16,7 +16,8 @@ MonoBehaviour:
   cost: 60
   thumbnail: {fileID: 21300000, guid: 565530dbf1d7f43d5991ce4bfdb0f9d6, type: 3}
   itemID: 
+  purchased: 0
   SoundFilterOverlayColor: {r: 1, g: 1, b: 1, a: 1}
-  Sound: {fileID: 8300000, guid: 8f8fdb535536748bbbe3481ca92ab531, type: 3}
+  SoundFile: {fileID: 8300000, guid: 8f8fdb535536748bbbe3481ca92ab531, type: 3}
   SoundFilterSpeed: 25
   SoundFilterSprite: []
