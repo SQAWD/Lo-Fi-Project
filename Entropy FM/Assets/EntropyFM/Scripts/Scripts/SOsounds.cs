@@ -10,8 +10,9 @@ public class SOsounds : ScriptableObject
     public int cost; 
     public Sprite thumbnail;
     public string itemID;
+    public bool purchased;
 
-    [Header("Info")]
+    [Header("Properties")]
     public Color SoundFilterOverlayColor = Color.white; // Default to white color
     public AudioClip Sound;
     public int SoundFilterSpeed = 25; // Default value set to 25

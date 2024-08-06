@@ -8479,7 +8479,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &743881319
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8495,8 +8495,8 @@ RectTransform:
   m_Father: {fileID: 1598285234}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 210, y: 0}
   m_SizeDelta: {x: 420, y: 0}
   m_Pivot: {x: 0.5, y: 0.4999999}
@@ -9399,7 +9399,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 210, y: -4.999939}
+  m_AnchoredPosition: {x: 210, y: -4.999878}
   m_SizeDelta: {x: 420, y: -130.00002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &816690948
@@ -9828,7 +9828,7 @@ GameObject:
   - component: {fileID: 841755747}
   - component: {fileID: 841755748}
   m_Layer: 0
-  m_Name: Item Manager 2
+  m_Name: Selected Items Manager 2
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -9858,24 +9858,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 841755746}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f87a887e09414c8aa1b8c89174c32a3, type: 3}
+  m_Script: {fileID: 11500000, guid: d8436f502b09f4af58dc5a6e5408937e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedItems: []
-  selectedThemes: []
-  selectedSounds: []
-  itemPreviewSave: []
-  itemZones:
-  - {fileID: 549845365}
-  - {fileID: 315342852}
-  - {fileID: 1313958309}
-  soundFilterPanels:
-  - {fileID: 349415080}
-  - {fileID: 809503478}
-  - {fileID: 407845946}
-  - {fileID: 1359566935}
-  - {fileID: 1855542747}
-  - {fileID: 32844375}
+  SelectedThemes: []
 --- !u!1 &875046947
 GameObject:
   m_ObjectHideFlags: 0
@@ -11418,7 +11404,7 @@ GameObject:
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1019820408
 Transform:
   m_ObjectHideFlags: 0
@@ -11791,7 +11777,7 @@ GameObject:
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1032581181
 Transform:
   m_ObjectHideFlags: 0
@@ -16992,12 +16978,14 @@ MonoBehaviour:
   selectedTheme: 0
   OpenStoreHotkey: 98
   shopCart: {fileID: 730626312}
-  itemManager: {fileID: 841755748}
+  itemManager: {fileID: 0}
   StoreAnimationController: {fileID: 402389570}
   StoreThemeInventory:
   - {fileID: 11400000, guid: e0a0f5af410894f83b4f199bb38f1e0b, type: 2}
   - {fileID: 11400000, guid: 43f881bce803f4b72ae1b346367baf69, type: 2}
-  StoreItemInventory: []
+  StoreItemInventory:
+  - {fileID: 11400000, guid: 4e56c54f9cb4346c4a5938d715f83773, type: 2}
+  - {fileID: 11400000, guid: 90b425a56df9d473ca9c9478c0e5d8b7, type: 2}
   StoreSoundInventory:
   - {fileID: 11400000, guid: 3e2ada1fc7b7e44588b3f9162804aba7, type: 2}
   - {fileID: 11400000, guid: c9d9db3b78b9c4aa597b7f0d1e2c7b06, type: 2}
@@ -22231,7 +22219,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2060833642}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2060833637}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2060833642
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -93,7 +93,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8882249398894433770
 RectTransform:
   m_ObjectHideFlags: 0
@@ -223,7 +223,6 @@ GameObject:
   - component: {fileID: 8464808741778335742}
   - component: {fileID: 5385564708260559235}
   - component: {fileID: 5463298980189551017}
-  - component: {fileID: 2853635165410889537}
   m_Layer: 5
   m_Name: 'Cost '
   m_TagString: Untagged
@@ -349,20 +348,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &2853635165410889537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2527960040287924218}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalFit: 2
-  m_VerticalFit: 0
 --- !u!1 &3099410466759995706
 GameObject:
   m_ObjectHideFlags: 0
@@ -782,9 +767,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7937109025862107067}
   - component: {fileID: 7937109025862107076}
+  - component: {fileID: 767308010989506990}
   - component: {fileID: 7937109025862107078}
-  - component: {fileID: 7937109025862107065}
-  - component: {fileID: 4705113517264208547}
   m_Layer: 5
   m_Name: SoundsSO Template
   m_TagString: Untagged
@@ -822,6 +806,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7937109025862107066}
   m_CullTransparentMesh: 1
+--- !u!114 &767308010989506990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7937109025862107066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f00ea2cfa5d2849a1b8d454175fc9b52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 0}
+  nameTxt: {fileID: 4925724970567091559}
+  costTxt: {fileID: 5463298980189551017}
+  thumbnailImg: {fileID: 3618017897208719565}
 --- !u!114 &7937109025862107078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -866,38 +866,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &7937109025862107065
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7937109025862107066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e741851cba3ad425c91ecf922cc6b379, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _data:
-    _json: '{"declarations":{"Kind":"Object","collection":{"$content":[],"$version":"A"},"$version":"A"}}'
-    _objectReferences: []
---- !u!114 &4705113517264208547
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7937109025862107066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5028f09966e34410b9d68445275ad4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  item: {fileID: 0}
-  nameTxt: {fileID: 4925724970567091559}
-  costTxt: {fileID: 5463298980189551017}
-  thumbnailImg: {fileID: 3618017897208719565}
-  modelPlaceholder: {fileID: 0}
 --- !u!1 &8555403327961104135
 GameObject:
   m_ObjectHideFlags: 0

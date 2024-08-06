@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Thunder
   m_EditorClassIdentifier: 
   name: Rain + Thunder
-  cost: 50
+  cost: 60
   thumbnail: {fileID: 21300000, guid: 565530dbf1d7f43d5991ce4bfdb0f9d6, type: 3}
   itemID: 
   SoundFilterOverlayColor: {r: 1, g: 1, b: 1, a: 1}
-  Sound: {fileID: 8300000, guid: a9ede2fab8f7342f890e63e5698c777a, type: 3}
+  Sound: {fileID: 8300000, guid: 8f8fdb535536748bbbe3481ca92ab531, type: 3}
   SoundFilterSpeed: 25
   SoundFilterSprite: []

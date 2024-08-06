@@ -12,7 +12,6 @@ public class StoreManager : MonoBehaviour
     public ItemManager itemManager;
     public Animator StoreAnimationController;
     public List<ItemSO> storeInventory = new List<ItemSO>();
-    
 
     [Header("Store Prefabs")]
     public GameObject themePrefab;

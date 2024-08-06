@@ -11,6 +11,7 @@ public class SOthemes : ScriptableObject
     public int cost; 
     public Sprite thumbnail;
     public string itemID;
+    public bool purchased;
 
     [Header("Theme Properties")]
     public Texture ThemelayerOne;

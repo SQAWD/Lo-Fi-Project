@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24fd84c705d5c4c08acb489727a3494b, type: 3}
   m_Name: Train Tracks
   m_EditorClassIdentifier: 
-  name: 
-  cost: 0
-  thumbnail: {fileID: 0}
+  name: Train Tracks
+  cost: 70
+  thumbnail: {fileID: 21300000, guid: 9aa4306431f044bf4a8bf4f8cca31e02, type: 3}
   itemID: 
   SoundFilterOverlayColor: {r: 1, g: 1, b: 1, a: 1}
-  Sound: {fileID: 0}
+  Sound: {fileID: 8300000, guid: c7d45cb8e78fb4a5abcd88ef7c156ed4, type: 3}
   SoundFilterSpeed: 25
   SoundFilterSprite: []
