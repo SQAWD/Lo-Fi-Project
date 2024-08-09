@@ -10,6 +10,7 @@ public class StoreManager2 : MonoBehaviour
     public KeyCode OpenStoreHotkey = KeyCode.B;
     public ItemManager2 itemManager2;
     public Animator StoreAnimationController;
+    public Animator MusicPlayerAnimationController;
     public List<SOthemes> StoreThemeInventory = new List<SOthemes>();
     public List<SOitems> StoreItemInventory = new List<SOitems>();
     public List<SOsounds> StoreSoundInventory = new List<SOsounds>();
@@ -149,16 +150,7 @@ public class StoreManager2 : MonoBehaviour
                     {
                         if (itemManager2 != null)
                         {
-                            if (sound.purchased == false)
-                            {
-                                SoundToSelectedList(sound);
-                            }
-
-                            if (sound.purchased == true)
-                            {
-                                Debug.LogError("AddThemeToSelectedList");
-                            }
-                            
+                             SoundToItemManagerList(sound);   
                         }
                         else
                         {
@@ -177,12 +169,21 @@ public class StoreManager2 : MonoBehaviour
 
     void ThemeToPreviewList(SOthemes theme)
     {
-        itemManager2.ThemeToPreviewList(theme);
+        itemManager2.AddThemeToPreviewList(theme);
     }
     
-    void SoundToSelectedList(SOsounds sound)
+    void SoundToItemManagerList(SOsounds sound)
     {
-        itemManager2.AddSoundToSelectedList(sound);
+         if (sound.purchased == false)
+            {
+              itemManager2.AddSoundToShopCartPreviewList(sound);
+            }
+
+        if (sound.purchased == true)
+        {
+          itemManager2.AddSoundToSelectedList(sound);  
+        }
+        
     }
 
 }

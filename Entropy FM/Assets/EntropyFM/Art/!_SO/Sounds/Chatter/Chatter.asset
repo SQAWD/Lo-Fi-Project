@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24fd84c705d5c4c08acb489727a3494b, type: 3}
+  m_Name: Chatter
+  m_EditorClassIdentifier: 
+  name: Chatter
+  cost: 50
+  thumbnail: {fileID: 21300000, guid: f013319cb51a04934b209aa799254607, type: 3}
+  itemID: zkqs57xy8r5djueng6rh1
+  purchased: 0
+  selected: 0
+  previewOn: 0
+  SoundFilterOverlayColor: {r: 1, g: 1, b: 1, a: 1}
+  SoundFile: {fileID: 8300000, guid: 4ec524e7cae6f4a95a09a044dc883f6e, type: 3}
+  SoundFilterSpeed: 25
+  SoundFilterSprite: []

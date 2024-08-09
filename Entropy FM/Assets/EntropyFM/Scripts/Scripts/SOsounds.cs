@@ -11,6 +11,8 @@ public class SOsounds : ScriptableObject
     public Sprite thumbnail;
     public string itemID;
     public bool purchased;
+    public bool selected;
+    public bool previewOn;
 
     [Header("Properties")]
     public Color SoundFilterOverlayColor = Color.white; // Default to white color
