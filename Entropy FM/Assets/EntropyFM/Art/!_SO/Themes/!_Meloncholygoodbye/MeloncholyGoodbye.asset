@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e1d46aeb392842a8aadc2066bdb4679, type: 3}
+  m_Name: MeloncholyGoodbye
+  m_EditorClassIdentifier: 
+  name: MeloncholyGoodbye
+  cost: 0
+  thumbnail: {fileID: 0}
+  itemID: 
+  purchased: 1
+  ThemelayerOne: {fileID: 2800000, guid: 4f4453b55c283495796e3276767afb32, type: 3}
+  ThemelayerTwo: {fileID: 0}
+  ThemelayerThree: {fileID: 0}
+  ThemelayerFour: {fileID: 0}
+  ThemelayerFive: {fileID: 0}
+  ThemeWall: {fileID: 0}
