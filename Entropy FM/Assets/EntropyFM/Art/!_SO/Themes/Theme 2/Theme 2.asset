@@ -14,12 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Mountains
   cost: 1200
-  thumbnail: {fileID: 21300000, guid: 13bd1951f947e4bf1849c0e8dedebd02, type: 3}
+  thumbnail: {fileID: 21300000, guid: 230d5fbbe93c5437e90c7463a32eb89e, type: 3}
   itemID: 92qxhufeerxwrxm8yf9xr
-  purchased: 0
-  ThemelayerOne: {fileID: 2800000, guid: 7e5adb6c718e1466aa205be6af74f7cc, type: 3}
-  ThemelayerTwo: {fileID: 2800000, guid: 27461de25448d4f7492e286cc1c02f9d, type: 3}
+  purchased: 1
+  selected: 1
+  previewOn: 0
+  ThemelayerOne: {fileID: 0}
+  LayerOneScrollSpeed: 0
+  ThemelayerTwo: {fileID: 0}
+  LayerTwoScrollSpeed: 0
   ThemelayerThree: {fileID: 2800000, guid: 27461de25448d4f7492e286cc1c02f9d, type: 3}
-  ThemelayerFour: {fileID: 2800000, guid: 02a14f81ef1a244d1a16077e26ea9b87, type: 3}
-  ThemelayerFive: {fileID: 2800000, guid: 02a14f81ef1a244d1a16077e26ea9b87, type: 3}
+  LayerThreeScrollSpeed: 0
+  LayerThreeEnabled: 0
+  ThemelayerFour: {fileID: 0}
+  LayerFourScrollSpeed: 0
+  LayerFourEnabled: 1
+  ThemelayerFive: {fileID: 2800000, guid: 43485024c4d214f7f80a88e9568d7cf2, type: 3}
+  LayerFiveScrollSpeed: 0
+  LayerFiveEnabled: 0
   ThemeWall: {fileID: 0}

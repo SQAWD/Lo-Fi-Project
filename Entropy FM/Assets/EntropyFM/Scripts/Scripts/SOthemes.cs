@@ -12,13 +12,23 @@ public class SOthemes : ScriptableObject
     public Sprite thumbnail;
     public string itemID;
     public bool purchased;
+    public bool selected;
+    public bool previewOn;
 
     [Header("Theme Properties")]
     public Texture ThemelayerOne;
+    public float LayerOneScrollSpeed;
     public Texture ThemelayerTwo;
+    public float LayerTwoScrollSpeed;
     public Texture ThemelayerThree;
+    public float LayerThreeScrollSpeed;
+    public bool LayerThreeEnabled;
     public Texture ThemelayerFour; 
+    public float LayerFourScrollSpeed;
+    public bool LayerFourEnabled;
     public Texture ThemelayerFive;
+    public float LayerFiveScrollSpeed;
+    public bool LayerFiveEnabled;
     public Texture ThemeWall;
     // Start is called before the first frame update
     void Start()

@@ -19,6 +19,14 @@ public class ItemManager2 : MonoBehaviour
     public Material SelectedThemelayerFour; 
     public Material SelectedThemelayerFive;
 
+    public GameObject SelectedThemeLayerThreeGameObject;
+    public GameObject SelectedThemeLayerFourGameObject;
+    public GameObject SelectedThemeLayerFiveGameObject;
+
+    [SerializeField] float LayerOneScrollSpeed;
+
+    private Layer1TextureOffset LayerOneTextureOffSetScript;
+
     [Header("Selected Sound Properties")]
     public AudioSource SelectedSound;
     public int SoundPreviewTime;
@@ -46,29 +54,69 @@ public class ItemManager2 : MonoBehaviour
             SelectedSound.clip = SelectedSoundsList[0].SoundFile;
             SelectedSound.Play();
         }
+
+         if (SelectedThemesList.Count > 0)
+        {
+            SelectedThemesList[0].selected = true;
+        }
+
+
     }
 
 
     public void AddThemeToPreviewList(SOthemes theme)
     {
-        //Click Add Item to Cart, Second Click Removes From Cart
-        if (ShopCartPreviewThemesList.Contains(theme))
-        {
-            ShopCartPreviewThemesList.Remove(theme);
-        }
-        else
-        {
-            ShopCartPreviewThemesList.Add(theme);
-        }
+        //Debug.LogError("Theme Added to Preview List");
+
+        if (ShopCartPreviewThemesList.Count == 1)
+    {
+        // Set SOTheme previewON bool to False
+        ShopCartPreviewThemesList[0].previewOn = false;
+        
+        // Replace the current item with the new sound
+        ShopCartPreviewThemesList[0] = theme;
+    }
+    // Check if the list is empty
+    else if (ShopCartPreviewThemesList.Count == 0)
+    {
+        // Add the new sound to the list
+        ShopCartPreviewThemesList.Add(theme);
+    }
+
+
     }
 
     public void AddThemeToSelectedList(SOthemes theme)
     {
-        if (SelectedThemelayerOne != null)
+            if (SelectedThemesList.Count == 1)
         {
-            SelectedThemelayerOne.mainTexture= theme.ThemelayerOne;
-            SelectedThemelayerOne.SetTexture("_EmissionMap", theme.ThemelayerOne);
-            SelectedThemelayerOne.EnableKeyword("_EMISSION");
+            // Set SOTheme previewON bool to False
+            SelectedThemesList[0].previewOn = false;
+        
+            // Replace the current item with the new sound
+            SelectedThemesList[0] = theme;
+        }
+            // Check if the list is empty
+            else if (SelectedThemesList.Count == 0)
+        {
+             // Add the new sound to the list
+             SelectedThemesList.Add(theme);
+        }
+
+        
+        
+        //Update Layer 5
+
+         if (theme.LayerFiveEnabled == true)
+        {
+            SelectedThemeLayerFiveGameObject.gameObject.SetActive(true);
+            SelectedThemelayerFive.mainTexture = theme.ThemelayerOne;
+            SelectedThemelayerFive.SetTexture("_EmissionMap", theme.ThemelayerOne);
+            SelectedThemelayerFive.EnableKeyword("_EMISSION");
+        }
+        else if (theme.LayerFiveEnabled == false)
+        {
+            SelectedThemeLayerFiveGameObject.gameObject.SetActive(false);
         }
 
     }

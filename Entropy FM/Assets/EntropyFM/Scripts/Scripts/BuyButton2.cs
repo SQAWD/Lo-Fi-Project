@@ -31,12 +31,15 @@ public class BuyButton2 : MonoBehaviour
         int CartCount = (ItemManager2.ShopCartPreviewSoundsList.Count + ItemManager2.ShopCartPreviewThemesList.Count);
         ShopCartCountText.text = CartCount.ToString(); 
 
-        if (ItemManager2.ShopCartPreviewSoundsList.Count > 0 && !HighlightBuyButtonUI)
+       if ((ItemManager2.ShopCartPreviewSoundsList.Count > 1 || ItemManager2.ShopCartPreviewThemesList.Count > 1) && !HighlightBuyButtonUI)
         {
             UpdateBuyButtonUI(); 
             HighlightBuyButtonUI = true;
             ButtonInteractible = true;   
         }
+
+
+
         else if (ItemManager2.ShopCartPreviewSoundsList.Count == 0 && HighlightBuyButtonUI)
         {
             // Reset UI when the cart is empty
@@ -65,8 +68,13 @@ public class BuyButton2 : MonoBehaviour
                 SpatialBridge.marketplaceService.PurchaseItem(sound.itemID);
             }
 
+            foreach (SOthemes theme in ItemManager2.ShopCartPreviewThemesList)
+            {
+                SpatialBridge.marketplaceService.PurchaseItem(theme.itemID);
+            }
+
             // Clear the cart and reset the UI
-            ClearCart();
+            //ClearCart();
         }
         else
         {

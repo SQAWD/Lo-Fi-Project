@@ -10,9 +10,14 @@ public class UIthemes : MonoBehaviour
     public SOthemes theme;
     public TMP_Text nameTxt; 
     public TMP_Text costTxt; 
-    public GameObject costObject;
     public Image thumbnailImg;
     public bool purchasedBool;
+
+    [Header("Game Objects")]
+    public GameObject costObject;
+    public GameObject selectedObject;
+    public GameObject previewUI;
+
 
     // Start is called before the first frame update
     void Start()

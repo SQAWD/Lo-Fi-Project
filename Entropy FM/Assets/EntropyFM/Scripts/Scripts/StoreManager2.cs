@@ -77,16 +77,8 @@ public class StoreManager2 : MonoBehaviour
                     {
                         if (itemManager2 != null)
                         {
-                            if (theme.purchased == false)
-                            {
-                                ThemeToPreviewList(theme);
-                                Debug.LogError("AddThemeToPreviewList");
-                            }
-
-                            if (theme.purchased == true)
-                            {
-                                Debug.LogError("AddThemeToSelectedList");
-                            }
+                            SendThemeToItemManager(theme);
+                            //Debug.LogError("Click_Theme");
                             
                         }
                         else
@@ -150,7 +142,7 @@ public class StoreManager2 : MonoBehaviour
                     {
                         if (itemManager2 != null)
                         {
-                             SoundToItemManagerList(sound);   
+                             SendSoundToItemManager(sound);   
                         }
                         else
                         {
@@ -171,8 +163,23 @@ public class StoreManager2 : MonoBehaviour
     {
         itemManager2.AddThemeToPreviewList(theme);
     }
+
+
+       void SendThemeToItemManager(SOthemes theme)
+    {
+         if (theme.purchased == false)
+            {
+              itemManager2.AddThemeToPreviewList(theme);
+            }
+
+        if (theme.purchased == true)
+        {
+          itemManager2.AddThemeToSelectedList(theme);  
+        }
+        
+    }
     
-    void SoundToItemManagerList(SOsounds sound)
+    void SendSoundToItemManager(SOsounds sound)
     {
          if (sound.purchased == false)
             {
