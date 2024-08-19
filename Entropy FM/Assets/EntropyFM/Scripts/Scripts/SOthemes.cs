@@ -15,21 +15,35 @@ public class SOthemes : ScriptableObject
     public bool selected;
     public bool previewOn;
 
-    [Header("Theme Properties")]
+    [Header("Layer One")]
+    public bool LayerOneEnabled;
     public Texture ThemelayerOne;
     public float LayerOneScrollSpeed;
+    
+
+    [Header("Layer Two")]
+    public bool LayerTwoEnabled;
     public Texture ThemelayerTwo;
     public float LayerTwoScrollSpeed;
+
+    [Header("Layer Three")]
+    public bool LayerThreeEnabled;
     public Texture ThemelayerThree;
     public float LayerThreeScrollSpeed;
-    public bool LayerThreeEnabled;
+    
+
+    [Header("Layer Four")]
+    public bool LayerFourEnabled;
     public Texture ThemelayerFour; 
     public float LayerFourScrollSpeed;
-    public bool LayerFourEnabled;
+    
+
+    [Header("Layer Five")]
+    public bool LayerFiveEnabled;
     public Texture ThemelayerFive;
     public float LayerFiveScrollSpeed;
-    public bool LayerFiveEnabled;
-    public Texture ThemeWall;
+    
+
     // Start is called before the first frame update
     void Start()
     {

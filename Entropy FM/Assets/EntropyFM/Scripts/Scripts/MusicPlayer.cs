@@ -18,7 +18,9 @@ public class MusicPlayer : MonoBehaviour
     public Button MusicIncreaseButton;
     public Button MusicDecreaseButton;
     public Button MuteButton;
+    public Animator MuteButtonAnimator;
     public Button SoundButton;
+    public Animator SoundButtonAnimator;
     public Button SoundIncreaseButton;
     public Button SoundDecreaseButton;
 
@@ -47,6 +49,7 @@ public class MusicPlayer : MonoBehaviour
     [Header("Sound Settings")]
     public AudioSource SoundAudioSource;
     public TextMeshProUGUI SoundSliderNum;
+    public AudioSource UiAudioSource;
     public float SoundVolume;
     public int SoundSlider;
     public bool isSoundMuted;
@@ -204,6 +207,7 @@ public class MusicPlayer : MonoBehaviour
         {
             AdvancedOptionsController.SetTrigger("Select");
             Debug.Log("OpenAdvancedOptions");
+
         }
     }
 
@@ -229,17 +233,22 @@ public class MusicPlayer : MonoBehaviour
 
         if (isMusicMuted)
         {
+            MuteButtonAnimator.SetTrigger("Selected");
+            SoundButtonAnimator.SetTrigger("Selected");
             MusicAudioSource.volume = 0;
             SoundAudioSource.volume = 0;
             MutedOverlay.SetActive(true);
-            Debug.Log("IsMuted TRUE");
+            UiAudioSource.Play();
+            //Debug.Log("IsMuted TRUE");
         }
         else
         {
+            MuteButtonAnimator.SetTrigger("Selected");
+            SoundButtonAnimator.SetTrigger("Selected");
             SoundAudioSource.volume = 1f / maxSoundSliderValue * SoundSlider;
             MusicAudioSource.volume = 1f / maxMusicSliderValue * MusicSlider;;
             MutedOverlay.SetActive(false);
-            Debug.Log("IsMuted FALSE");
+            //Debug.Log("IsMuted FALSE");
         }
     }
 }

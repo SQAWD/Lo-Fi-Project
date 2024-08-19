@@ -19,6 +19,8 @@ public class ItemManager2 : MonoBehaviour
     public Material SelectedThemelayerFour; 
     public Material SelectedThemelayerFive;
 
+    public GameObject SelectedThemeLayerOneGameObject;
+    public GameObject SelectedThemeLayerTwoGameObject;
     public GameObject SelectedThemeLayerThreeGameObject;
     public GameObject SelectedThemeLayerFourGameObject;
     public GameObject SelectedThemeLayerFiveGameObject;
@@ -103,23 +105,49 @@ public class ItemManager2 : MonoBehaviour
              SelectedThemesList.Add(theme);
         }
 
-        
-        
-        //Update Layer 5
-
-         if (theme.LayerFiveEnabled == true)
-        {
-            SelectedThemeLayerFiveGameObject.gameObject.SetActive(true);
-            SelectedThemelayerFive.mainTexture = theme.ThemelayerOne;
-            SelectedThemelayerFive.SetTexture("_EmissionMap", theme.ThemelayerOne);
-            SelectedThemelayerFive.EnableKeyword("_EMISSION");
-        }
-        else if (theme.LayerFiveEnabled == false)
-        {
-            SelectedThemeLayerFiveGameObject.gameObject.SetActive(false);
-        }
-
+         UpdateAllLayers(theme);
     }
+
+    public struct LayerConfig
+{
+    public bool IsEnabled;
+    public GameObject LayerGameObject;
+    public Material LayerMaterial;
+    public Texture LayerTexture;
+}
+
+    private void UpdateAllLayers(SOthemes theme)
+{
+    LayerConfig[] layers = new LayerConfig[]
+    {
+        new LayerConfig { IsEnabled = theme.LayerOneEnabled, LayerGameObject = SelectedThemeLayerOneGameObject, LayerMaterial = SelectedThemelayerOne, LayerTexture = theme.ThemelayerOne },
+        new LayerConfig { IsEnabled = theme.LayerTwoEnabled, LayerGameObject = SelectedThemeLayerTwoGameObject, LayerMaterial = SelectedThemelayerTwo, LayerTexture = theme.ThemelayerTwo },
+        new LayerConfig { IsEnabled = theme.LayerThreeEnabled, LayerGameObject = SelectedThemeLayerThreeGameObject, LayerMaterial = SelectedThemelayerThree, LayerTexture = theme.ThemelayerThree },
+        new LayerConfig { IsEnabled = theme.LayerFourEnabled, LayerGameObject = SelectedThemeLayerFourGameObject, LayerMaterial = SelectedThemelayerFour, LayerTexture = theme.ThemelayerFour },
+        new LayerConfig { IsEnabled = theme.LayerFiveEnabled, LayerGameObject = SelectedThemeLayerFiveGameObject, LayerMaterial = SelectedThemelayerFive, LayerTexture = theme.ThemelayerFive }
+    };
+
+    foreach (var layer in layers)
+    {
+        UpdateLayer(layer);
+    }
+}
+
+private void UpdateLayer(LayerConfig layerConfig)
+{
+    if (layerConfig.IsEnabled)
+    {
+        layerConfig.LayerGameObject.SetActive(true);
+        layerConfig.LayerMaterial.mainTexture = layerConfig.LayerTexture;
+        layerConfig.LayerMaterial.SetTexture("_EmissionMap", layerConfig.LayerTexture);
+        layerConfig.LayerMaterial.EnableKeyword("_EMISSION");
+    }
+    else
+    {
+        layerConfig.LayerGameObject.SetActive(false);
+    }
+}
+
 
     public void AddSoundToSelectedList(SOsounds sound)
     {

@@ -19,17 +19,18 @@ MonoBehaviour:
   purchased: 1
   selected: 1
   previewOn: 0
+  LayerOneEnabled: 0
   ThemelayerOne: {fileID: 0}
   LayerOneScrollSpeed: 0
+  LayerTwoEnabled: 0
   ThemelayerTwo: {fileID: 0}
   LayerTwoScrollSpeed: 0
+  LayerThreeEnabled: 1
   ThemelayerThree: {fileID: 2800000, guid: 27461de25448d4f7492e286cc1c02f9d, type: 3}
   LayerThreeScrollSpeed: 0
-  LayerThreeEnabled: 0
-  ThemelayerFour: {fileID: 0}
-  LayerFourScrollSpeed: 0
   LayerFourEnabled: 1
+  ThemelayerFour: {fileID: 2800000, guid: aefe120de7284428581cb42e393766a2, type: 3}
+  LayerFourScrollSpeed: 0
+  LayerFiveEnabled: 1
   ThemelayerFive: {fileID: 2800000, guid: 43485024c4d214f7f80a88e9568d7cf2, type: 3}
   LayerFiveScrollSpeed: 0
-  LayerFiveEnabled: 0
-  ThemeWall: {fileID: 0}

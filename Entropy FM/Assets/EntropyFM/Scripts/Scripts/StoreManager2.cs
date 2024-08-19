@@ -8,6 +8,7 @@ public class StoreManager2 : MonoBehaviour
     [Header("General")]
      public ThemeType selectedTheme;
     public KeyCode OpenStoreHotkey = KeyCode.B;
+    public bool StoreOpen;
     public ItemManager2 itemManager2;
     public Animator StoreAnimationController;
     public Animator MusicPlayerAnimationController;
@@ -24,6 +25,12 @@ public class StoreManager2 : MonoBehaviour
     public Transform themePanel;
     public Transform itemPanel;
     public Transform soundPanel;
+
+    [Header("Scroll Sections")]
+    public RectTransform StoreSectionContainer;
+    public float Sectiontest;
+    public RectTransform[] sections; // Assign your sections in the Inspector
+
     
 
     // Start is called before the first frame update
@@ -42,10 +49,16 @@ public class StoreManager2 : MonoBehaviour
 
     private void CheckHotkeys()
     {
-        if (Input.GetKeyDown(OpenStoreHotkey))
+        if (Input.GetKeyDown(OpenStoreHotkey) && StoreOpen == false)
         {
+            StoreOpen = !StoreOpen;
             StoreAnimationController.SetTrigger("Select");
-            Debug.Log("OpenStoreHotKey");
+            //Debug.LogError("OpenStore");
+
+        }
+        else if (Input.GetKeyDown(OpenStoreHotkey) && StoreOpen == true){
+            StoreAnimationController.SetTrigger("Select");
+            //Debug.LogError("CloseStore");
         }
     }
 
@@ -191,6 +204,16 @@ public class StoreManager2 : MonoBehaviour
           itemManager2.AddSoundToSelectedList(sound);  
         }
         
+    }
+
+    public void ScrollToSection()
+    {
+        Canvas.ForceUpdateCanvases();
+        //
+
+        //RectTransform section = sections[sectionIndex];
+        //float targetY = (section.anchoredPosition.y + (section.rect.height / 2)) / scrollRect.content.rect.height;
+        //scrollRect.verticalNormalizedPosition = 1 - targetY;
     }
 
 }

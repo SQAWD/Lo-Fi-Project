@@ -16,12 +16,14 @@ MonoBehaviour:
   cost: 0
   thumbnail: {fileID: 21300000, guid: e32900255e5c84fb7b2cb0c38417d24c, type: 3}
   itemID: emwrn1e9muzqkzj8kx11h
-  purchased: 0
+  purchased: 1
   selected: 0
   previewOn: 0
   ThemelayerOne: {fileID: 0}
   LayerOneScrollSpeed: 0
+  LayerOneEnabled: 0
   ThemelayerTwo: {fileID: 0}
+  LayerTwoEnabled: 0
   LayerTwoScrollSpeed: 0
   ThemelayerThree: {fileID: 0}
   LayerThreeScrollSpeed: 0
