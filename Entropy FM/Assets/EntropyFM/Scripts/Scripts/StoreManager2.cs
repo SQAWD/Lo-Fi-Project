@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,7 @@ public class StoreManager2 : MonoBehaviour
     [Header("General")]
      public ThemeType selectedTheme;
     public KeyCode OpenStoreHotkey = KeyCode.B;
+    public Button CloseStoreButton;
     public bool StoreOpen;
     public ItemManager2 itemManager2;
     public Animator StoreAnimationController;
@@ -27,9 +29,29 @@ public class StoreManager2 : MonoBehaviour
     public Transform soundPanel;
 
     [Header("Scroll Sections")]
-    public RectTransform StoreSectionContainer;
-    public float Sectiontest;
-    public RectTransform[] sections; // Assign your sections in the Inspector
+    public bool CategoryOneSelected;
+    public bool CategoryTwoSelected;
+    public bool CategoryThreeSelected;
+
+    public Button CatgoryOneButton;
+    public Button CatgoryTwoButton;
+    public Button CatgoryThreeButton;
+    
+    public Animator CategoryOneAnimator;
+    public Animator CategoryTwoAnimator;
+    public Animator CategoryThreeAnimator;
+
+    public RectTransform storeListRectTransform;
+
+    public float category1PositionY;
+    public float category2PositionY;
+    public float category3PositionY;
+
+    private Coroutine scrollCoroutine;
+
+    public float scrollSpeed = 10f;
+
+    public Transform StoreSectionContainer;
 
     
 
@@ -45,22 +67,122 @@ public class StoreManager2 : MonoBehaviour
     void Update()
     {
         CheckHotkeys();
+
+        // Check the current position of the store list and update the category booleans accordingly
+        float currentY = storeListRectTransform.anchoredPosition.y;
+
+        if (currentY >= category3PositionY)
+        {
+            SetCategory(3);
+        }
+        else if (currentY >= category2PositionY)
+        {
+            SetCategory(2);
+        }
+        else if (currentY >= category1PositionY)
+        {
+            SetCategory(1);
+        }
     }
 
     private void CheckHotkeys()
     {
         if (Input.GetKeyDown(OpenStoreHotkey) && StoreOpen == false)
         {
-            StoreOpen = !StoreOpen;
-            StoreAnimationController.SetTrigger("Select");
-            //Debug.LogError("OpenStore");
-
+            OpenStore(); 
         }
-        else if (Input.GetKeyDown(OpenStoreHotkey) && StoreOpen == true){
-            StoreAnimationController.SetTrigger("Select");
-            //Debug.LogError("CloseStore");
+        else if (Input.GetKeyDown(OpenStoreHotkey) && StoreOpen == true)
+        {
+            CloseStore();    
         }
     }
+
+    void OpenStore()
+    {
+        StoreOpen = !StoreOpen;
+        StoreAnimationController.SetTrigger("Select");
+    }
+
+    void CloseStore()
+    {
+        StoreAnimationController.SetTrigger("Select");
+        StoreOpen = !StoreOpen;
+        //Debug.LogError("CloseStore");
+    }
+
+    // Method to set the category based on the current scroll position
+    private void SetCategory(int categoryNumber)
+    {
+        // Reset all categories to false
+        CategoryOneSelected = false;
+        CategoryTwoSelected = false;
+        CategoryThreeSelected = false;
+
+        // Set all animators' 'isSelected' parameter to false
+        CategoryOneAnimator.SetBool("isSelected", false);
+        CategoryTwoAnimator.SetBool("isSelected", false);
+        CategoryThreeAnimator.SetBool("isSelected", false);
+   
+
+        // Set the selected category to true and its animator's 'isSelected' to true
+        switch (categoryNumber)
+        {
+            case 1:
+                CategoryOneSelected = true;
+                CategoryOneAnimator.SetBool("isSelected", true);
+                break;
+            case 2:
+                CategoryTwoSelected = true;
+                CategoryTwoAnimator.SetBool("isSelected", true);
+                break;
+            case 3:
+                CategoryThreeSelected = true;
+                CategoryThreeAnimator.SetBool("isSelected", true);
+                break;
+            default:
+                Debug.LogWarning("Invalid category number");
+                break;
+        }
+    }
+
+    // Call this method when a category button is clicked
+    public void SelectCategory(int categoryNumber)
+    {
+         if (scrollCoroutine != null)
+        {
+            StopCoroutine(scrollCoroutine);
+        }
+
+        // Start a new coroutine to scroll to the selected category
+        scrollCoroutine = StartCoroutine(ScrollToPosition(GetCategoryPositionY(categoryNumber)));
+    }
+
+     private IEnumerator ScrollToPosition(float targetY)
+    {
+         while (Mathf.Abs(storeListRectTransform.anchoredPosition.y - targetY) > 0.1f)
+        {
+            float newY = Mathf.Lerp(storeListRectTransform.anchoredPosition.y, targetY, scrollSpeed * Time.deltaTime);
+            storeListRectTransform.anchoredPosition = new Vector2(storeListRectTransform.anchoredPosition.x, newY);
+            yield return null;
+        }
+        storeListRectTransform.anchoredPosition = new Vector2(storeListRectTransform.anchoredPosition.x, targetY);
+
+        // Set the coroutine reference to null once the scrolling is done
+        scrollCoroutine = null;
+    }
+
+   // Helper method to get the Y position for a given category
+    private float GetCategoryPositionY(int categoryNumber)
+    {
+        switch (categoryNumber)
+        {
+            case 1: return category1PositionY;
+            case 2: return category2PositionY;
+            case 3: return category3PositionY;
+            default: return category1PositionY; // Default to category 1 if an invalid number is passed
+        }
+    }
+
 
       void PopulateThemes()
     {
@@ -174,7 +296,7 @@ public class StoreManager2 : MonoBehaviour
 
     void ThemeToPreviewList(SOthemes theme)
     {
-        itemManager2.AddThemeToPreviewList(theme);
+        itemManager2.AddThemeToShopCartPreviewList(theme);
     }
 
 
@@ -182,7 +304,7 @@ public class StoreManager2 : MonoBehaviour
     {
          if (theme.purchased == false)
             {
-              itemManager2.AddThemeToPreviewList(theme);
+              itemManager2.AddThemeToShopCartPreviewList(theme);
             }
 
         if (theme.purchased == true)

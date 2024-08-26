@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SoundMenu", menuName = "New Sound")]
-public class SOsounds : ScriptableObject
+[CreateAssetMenu(fileName = "AnimationMenu", menuName = "New Animation")]
+public class AnimationSO : ScriptableObject
 {
     [Header("General")]
     public new string name;
@@ -14,12 +14,12 @@ public class SOsounds : ScriptableObject
     public bool selected;
     public bool previewOn;
 
-    [Header("Properties")]
-    public Color SoundFilterOverlayColor = Color.white; // Default to white color
-    public AudioClip SoundFile;
-    public bool FilterAnimation;
-    public List<Sprite> SoundFilterSprite;
 
+    public Color SoundFilterOverlayColor = Color.white;
+    public bool AnimationEnabled;
+    public List<Sprite> SpriteImageSequence;
+    public Transform AnimationLocation;
+    // Start is called before the first frame update
     void Start()
     {
         

@@ -33,6 +33,12 @@ public class ItemManager2 : MonoBehaviour
     public AudioSource SelectedSound;
     public int SoundPreviewTime;
     public Image SelectedSoundFilter;
+    public Material WeatherMaterial;
+    public int SpriteFrameRate = 25;
+    public GameObject Weather;
+    private Material weatherMaterial;
+
+    private Coroutine spriteSequenceCoroutine;
     
 
     [Header("Shopping Cart Preview Lists")]
@@ -46,6 +52,7 @@ public class ItemManager2 : MonoBehaviour
     public List<SOsounds> SelectedSoundsList = new List<SOsounds>();
 
     private Coroutine previewCoroutine;
+    private Coroutine themePreviewCoroutine;
 
     // Start is called before the first frame update
     void Start()
@@ -66,36 +73,95 @@ public class ItemManager2 : MonoBehaviour
     }
 
 
-    public void AddThemeToPreviewList(SOthemes theme)
+    public void AddThemeToShopCartPreviewList(SOthemes theme)
     {
-        //Debug.LogError("Theme Added to Preview List");
+        if (ShopCartPreviewThemesList.Count == 1)   
+        {
+            // Set SOTheme previewON bool to False
+            ShopCartPreviewThemesList[0].previewOn = false;
+            
+            // Replace the current item with the new theme
+            ShopCartPreviewThemesList[0] = theme;
+        }
+        // Check if the list is empty
+        else if (ShopCartPreviewThemesList.Count == 0)
+        {
+            // Add the new theme to the list
+            ShopCartPreviewThemesList.Add(theme);
+        }
 
-        if (ShopCartPreviewThemesList.Count == 1)
+        // Stop any currently running preview coroutine
+        if (themePreviewCoroutine != null)
+        {
+            StopCoroutine(themePreviewCoroutine);
+        }
+
+
+        // Start the preview coroutine
+        themePreviewCoroutine = StartCoroutine(PreviewThemeCoroutine(theme));
+
+
+    }
+
+    private IEnumerator PreviewThemeCoroutine(SOthemes theme)
     {
-        // Set SOTheme previewON bool to False
-        ShopCartPreviewThemesList[0].previewOn = false;
-        
-        // Replace the current item with the new sound
-        ShopCartPreviewThemesList[0] = theme;
+        // Apply the preview theme
+        UpdateAllLayers(theme);
+
+        // Set preview flag
+        theme.previewOn = true;
+
+        // Wait for some condition or until the theme is removed from the preview list
+        while (ShopCartPreviewThemesList.Contains(theme))
+        {
+            yield return null;
+        }
+
+        // Revert back to the selected theme
+        if (SelectedThemesList.Count > 0)
+        {
+            UpdateAllLayers(SelectedThemesList[0]);
+        }
+
+        // Clear the coroutine reference
+        themePreviewCoroutine = null;
     }
-    // Check if the list is empty
-    else if (ShopCartPreviewThemesList.Count == 0)
+
+     public void RemoveThemeFromShopCartPreviewList(SOthemes theme)
     {
-        // Add the new sound to the list
-        ShopCartPreviewThemesList.Add(theme);
+        if (ShopCartPreviewThemesList.Contains(theme))
+        {
+            ShopCartPreviewThemesList.Remove(theme);
+            theme.previewOn = false;
+
+            // If the removed theme was being previewed, stop the coroutine
+            if (themePreviewCoroutine != null)
+            {
+                StopCoroutine(themePreviewCoroutine);
+                themePreviewCoroutine = null;
+            }
+
+            // Revert back to the selected theme
+            if (SelectedThemesList.Count > 0)
+            {
+                UpdateAllLayers(SelectedThemesList[0]);
+            }
+        }
     }
 
 
-    }
+
+
 
     public void AddThemeToSelectedList(SOthemes theme)
     {
+            // if the list already has an item
             if (SelectedThemesList.Count == 1)
         {
-            // Set SOTheme previewON bool to False
+            // Set removed SOTheme previewON bool to False
             SelectedThemesList[0].previewOn = false;
         
-            // Replace the current item with the new sound
+            // Replace the current theme with the new theme
             SelectedThemesList[0] = theme;
         }
             // Check if the list is empty
@@ -138,44 +204,116 @@ private void UpdateLayer(LayerConfig layerConfig)
     if (layerConfig.IsEnabled)
     {
         layerConfig.LayerGameObject.SetActive(true);
-        layerConfig.LayerMaterial.mainTexture = layerConfig.LayerTexture;
-        layerConfig.LayerMaterial.SetTexture("_EmissionMap", layerConfig.LayerTexture);
-        layerConfig.LayerMaterial.EnableKeyword("_EMISSION");
+        
+        // Use sharedMaterial to avoid creating instances
+        Material sharedMat = layerConfig.LayerGameObject.GetComponent<Renderer>().sharedMaterial;
+
+        // Update the shared material's textures
+        sharedMat.mainTexture = layerConfig.LayerTexture;
+        sharedMat.SetTexture("_EmissionMap", layerConfig.LayerTexture);
+        sharedMat.EnableKeyword("_EMISSION");
     }
     else
     {
         layerConfig.LayerGameObject.SetActive(false);
     }
+
 }
 
 
-    public void AddSoundToSelectedList(SOsounds sound)
+public void AddSoundToSelectedList(SOsounds sound)
+
     {
-         if (SelectedSoundsList.Count == 1)
+     if (SelectedSoundsList.Count == 1)
     {
         // Set Selection to False
         SelectedSoundsList[0].selected = false;
 
         // Replace the current item with the new sound
         SelectedSoundsList[0] = sound;
-
     }
-    // Check if the list is empty
     else if (SelectedSoundsList.Count == 0)
     {
         // Add the new sound to the list
         SelectedSoundsList.Add(sound);
     }
 
-     // Set the selected property of the new sound to true
+    // Set the selected property of the new sound to true
     sound.selected = true;
 
     // Update the AudioSource with the new sound
-     if (SelectedSoundsList.Count > 0)
-     {
-            SelectedSound.clip = SelectedSoundsList[0].SoundFile;
-            SelectedSound.Play();
+    if (SelectedSoundsList.Count > 0)
+    {
+        SelectedSound.clip = SelectedSoundsList[0].SoundFile;
+        SelectedSound.Play();
+    }
+
+    // Ensure the Weather GameObject is active if there is a sprite filter
+    if (sound.SoundFilterSprite != null && sound.SoundFilterSprite.Count > 0)
+    {
+        Weather.SetActive(true);
+    }
+    else
+    {
+        Weather.SetActive(false);
+    }
+
+    // Stop any existing sprite sequence before starting a new one
+    if (spriteSequenceCoroutine != null)
+    {
+        StopCoroutine(spriteSequenceCoroutine);
+    }
+
+    // Check the FilterAnimation bool in the sound scriptable object
+    if (sound.FilterAnimation)
+    {
+        // Play the sprite sequence associated with the sound
+        PlaySpriteSequenceOnMaterial(sound.SoundFilterSprite);
+    }
+    else
+    {
+        // Deactivate the Weather GameObject if animation is not enabled
+        if (Weather != null)
+        {
+            Weather.SetActive(false);
         }
+    }
+        
+    }
+
+    public void PlaySpriteSequenceOnMaterial(List<Sprite> sprites)
+    {
+        if (Weather != null)
+        {
+            Weather.SetActive(true);  // Ensure Weather is active when playing the sequence
+        }
+
+        if (spriteSequenceCoroutine != null)
+        {
+            StopCoroutine(spriteSequenceCoroutine);
+        }
+
+        spriteSequenceCoroutine = StartCoroutine(SpriteSequenceCoroutine(sprites));
+    }
+
+    private IEnumerator SpriteSequenceCoroutine(List<Sprite> sprites)
+    {
+        float frameDuration = 1.0f / SpriteFrameRate;  // Calculate frame duration based on frame rate
+
+        if (WeatherMaterial != null && sprites != null)
+        {
+        while (true) // Infinite loop to keep cycling through the sprites
+        {
+            foreach (Sprite sprite in sprites)
+            {
+                if (sprite != null)
+                {
+                    WeatherMaterial.mainTexture = sprite.texture;
+                    yield return new WaitForSeconds(frameDuration);  // Use the calculated frame duration
+                }
+            }
+        }
+    }
     }
 
     public void AddSoundToShopCartPreviewList(SOsounds sound)

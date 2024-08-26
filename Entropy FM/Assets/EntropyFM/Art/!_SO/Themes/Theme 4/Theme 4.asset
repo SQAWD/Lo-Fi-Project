@@ -16,22 +16,21 @@ MonoBehaviour:
   cost: 1200
   thumbnail: {fileID: 21300000, guid: 7635b6bd1452b46658fec114c787fb28, type: 3}
   itemID: 1rh9b97kxgx6691sgw80w
-  purchased: 1
+  purchased: 0
   selected: 0
-  previewOn: 0
+  previewOn: 1
+  LayerOneEnabled: 0
   ThemelayerOne: {fileID: 0}
   LayerOneScrollSpeed: 0
-  LayerOneEnabled: 1
+  LayerTwoEnabled: 0
   ThemelayerTwo: {fileID: 0}
-  LayerTwoEnabled: 1
   LayerTwoScrollSpeed: 0
+  LayerThreeEnabled: 0
   ThemelayerThree: {fileID: 0}
   LayerThreeScrollSpeed: 0
-  LayerThreeEnabled: 0
+  LayerFourEnabled: 0
   ThemelayerFour: {fileID: 0}
   LayerFourScrollSpeed: 0
-  LayerFourEnabled: 0
-  ThemelayerFive: {fileID: 0}
+  LayerFiveEnabled: 1
+  ThemelayerFive: {fileID: 2800000, guid: 7635b6bd1452b46658fec114c787fb28, type: 3}
   LayerFiveScrollSpeed: 0
-  LayerFiveEnabled: 0
-  ThemeWall: {fileID: 0}

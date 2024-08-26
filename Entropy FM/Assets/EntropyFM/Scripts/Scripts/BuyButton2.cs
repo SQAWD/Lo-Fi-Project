@@ -31,19 +31,15 @@ public class BuyButton2 : MonoBehaviour
         int CartCount = (ItemManager2.ShopCartPreviewSoundsList.Count + ItemManager2.ShopCartPreviewThemesList.Count);
         ShopCartCountText.text = CartCount.ToString(); 
 
-       if ((ItemManager2.ShopCartPreviewSoundsList.Count > 1 || ItemManager2.ShopCartPreviewThemesList.Count > 1) && !HighlightBuyButtonUI)
-        {
+         if (CartCount > 0 && !HighlightBuyButtonUI)
+         {
             UpdateBuyButtonUI(); 
             HighlightBuyButtonUI = true;
-            ButtonInteractible = true;   
+            ButtonInteractible = true;
         }
-
-
-
-        else if (ItemManager2.ShopCartPreviewSoundsList.Count == 0 && HighlightBuyButtonUI)
+         else if (CartCount == 0 && HighlightBuyButtonUI)
         {
-            // Reset UI when the cart is empty
-            ResetBuyButtonUI();
+        ResetBuyButtonUI();
         }
     }
 
@@ -54,15 +50,20 @@ public class BuyButton2 : MonoBehaviour
 
     void ResetBuyButtonUI()
     {
+        if (HighlightBuyButtonUI)  
+        {
         HighlightBuyButtonUI = false;
         ButtonInteractible = false;
         ButtonAnimator.ResetTrigger("ItemsinCart");
+        }
     }
 
     void OnBuyButtonClick()
     {
         if (ButtonInteractible)
         {
+            Debug.LogError("Buy Button Clicked!");
+
             foreach (SOsounds sound in ItemManager2.ShopCartPreviewSoundsList)
             {
                 SpatialBridge.marketplaceService.PurchaseItem(sound.itemID);

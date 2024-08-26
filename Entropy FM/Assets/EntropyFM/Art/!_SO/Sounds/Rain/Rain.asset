@@ -17,11 +17,11 @@ MonoBehaviour:
   thumbnail: {fileID: 21300000, guid: 2f015aea582e14897821d9f8963e9394, type: 3}
   itemID: 66crnub94bs1b54aqmdxh
   purchased: 1
-  selected: 0
+  selected: 1
   previewOn: 0
   SoundFilterOverlayColor: {r: 1, g: 1, b: 1, a: 1}
   SoundFile: {fileID: 8300000, guid: a9ede2fab8f7342f890e63e5698c777a, type: 3}
-  SoundFilterSpeed: 25
+  FilterAnimation: 1
   SoundFilterSprite:
   - {fileID: 21300000, guid: c4efa9cf8429f4ac2a14dab2505c7075, type: 3}
   - {fileID: 21300000, guid: 720fe59617eab4cc1aae53a475e280e5, type: 3}
