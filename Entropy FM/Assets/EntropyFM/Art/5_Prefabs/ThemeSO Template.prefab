@@ -881,8 +881,8 @@ GameObject:
   - component: {fileID: 7066780185196057419}
   - component: {fileID: 7066780185196057418}
   - component: {fileID: 3107192650879860611}
-  - component: {fileID: 2043098459174485442}
   - component: {fileID: 684129448457924582}
+  - component: {fileID: 9028296985186136781}
   m_Layer: 5
   m_Name: ThemeSO Template
   m_TagString: Untagged
@@ -1009,26 +1009,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AspectMode: 1
   m_AspectRatio: 2.3332
---- !u!114 &2043098459174485442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7066780185196057422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86b3e7910de674f029f44fc8e057c5a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  theme: {fileID: 0}
-  nameTxt: {fileID: 7274967101146154736}
-  costTxt: {fileID: 7276269556549906157}
-  thumbnailImg: {fileID: 5350654848911569680}
-  purchasedBool: 0
-  costObject: {fileID: 352215082241633716}
-  selectedObject: {fileID: 0}
-  previewUI: {fileID: 0}
 --- !u!95 &684129448457924582
 Animator:
   serializedVersion: 5
@@ -1050,6 +1030,26 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &9028296985186136781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7066780185196057422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33c371e396f114c1792027373a82c91c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  theme: {fileID: 0}
+  nameTxt: {fileID: 7274967101146154736}
+  costTxt: {fileID: 7276269556549906157}
+  thumbnailImg: {fileID: 5350654848911569680}
+  purchasedBool: 0
+  costObject: {fileID: 352215082241633716}
+  selectedObject: {fileID: 4219805022518238396}
+  previewUI: {fileID: 0}
 --- !u!1 &8917176292620450813
 GameObject:
   m_ObjectHideFlags: 0

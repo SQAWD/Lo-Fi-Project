@@ -53,6 +53,7 @@ public class ItemManager2 : MonoBehaviour
 
     private Coroutine previewCoroutine;
     private Coroutine themePreviewCoroutine;
+    private Coroutine itemPreviewCoroutine;
 
     // Start is called before the first frame update
     void Start()
@@ -72,6 +73,7 @@ public class ItemManager2 : MonoBehaviour
 
     }
 
+#region  Themes
 
     public void AddThemeToShopCartPreviewList(SOthemes theme)
     {
@@ -150,9 +152,6 @@ public class ItemManager2 : MonoBehaviour
     }
 
 
-
-
-
     public void AddThemeToSelectedList(SOthemes theme)
     {
             // if the list already has an item
@@ -220,6 +219,9 @@ private void UpdateLayer(LayerConfig layerConfig)
 
 }
 
+#endregion 
+
+#region  Sounds
 
 public void AddSoundToSelectedList(SOsounds sound)
 
@@ -278,6 +280,7 @@ public void AddSoundToSelectedList(SOsounds sound)
             Weather.SetActive(false);
         }
     }
+
         
     }
 
@@ -379,6 +382,65 @@ public void AddSoundToSelectedList(SOsounds sound)
         // Clear the coroutine reference
         previewCoroutine = null;
     }
+#endregion
+
+#region Items
+
+public void AddItemToShopCartPreviewList(SOitems item)
+    {
+        if (ShopCartPreviewItemsList.Count == 1)   
+        {
+            // Set SOTheme previewON bool to False
+            ShopCartPreviewItemsList[0].previewOn = false;
+            
+            // Replace the current item with the new theme
+            ShopCartPreviewItemsList[0] = item;
+        }
+        // Check if the list is empty
+        else if (ShopCartPreviewItemsList.Count == 0)
+        {
+            // Add the new theme to the list
+            ShopCartPreviewItemsList.Add(item);
+        }
+
+        // Stop any currently running preview coroutine
+        if (itemPreviewCoroutine != null)
+        {
+            StopCoroutine(itemPreviewCoroutine);
+        }
+
+    }
+
+    public void AddItemToSelectedList(SOitems items)
+
+    {
+     if (SelectedSoundsList.Count == 1)
+    {
+        // Set Selection to False
+        SelectedItemsList[0].selected = false;
+
+        // Replace the current item with the new sound
+        SelectedItemsList[0] = items;
+    }
+    else if (SelectedItemsList.Count == 0)
+    {
+        // Add the new sound to the list
+        SelectedItemsList.Add(items);
+    }
+
+    // Set the selected property of the new sound to true
+    items.selected = true;
+
+        
+    }
 
 
+
+
+
+
+
+
+
+#endregion
 }

@@ -2,24 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using SpatialSys.UnitySDK;
 
 public class ClickTargetManager : MonoBehaviour
 {
     public StoreManager2 StoreManager2;
-    public Button ThemeClickTargetButton;
     public Button SoundClickTargetButton;
-    public GameObject SoundClickTargetGameObject;
-    public GameObject ThemeClickTargetGameObject;
+    public Button ThemeClickTargetButton;
 
     void Start()
+    {   
+        SoundClickTargetButton.onClick.AddListener(OnButtonClick);
+        ThemeClickTargetButton.onClick.AddListener(OnButtonClick);
+    }
+
+     public void OnButtonClick()
     {
-        
+        StoreManager2.OpenStore();
     }
 
     void Update()
     {
-
         // Handle the visibility of the buttons based on the StoreManager2 state
         if (StoreManager2.StoreOpen)
         {
@@ -28,10 +30,11 @@ public class ClickTargetManager : MonoBehaviour
         }
         else
         {
-            SoundClickTargetButton.gameObject.SetActive(true);
             ThemeClickTargetButton.gameObject.SetActive(true);
+            SoundClickTargetButton.gameObject.SetActive(true);
         }
 
     }
 
+   
 }

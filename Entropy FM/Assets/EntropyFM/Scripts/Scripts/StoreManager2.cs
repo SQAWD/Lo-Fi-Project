@@ -51,8 +51,6 @@ public class StoreManager2 : MonoBehaviour
 
     public float scrollSpeed = 10f;
 
-    public Transform StoreSectionContainer;
-
     
 
     // Start is called before the first frame update
@@ -97,13 +95,13 @@ public class StoreManager2 : MonoBehaviour
         }
     }
 
-    void OpenStore()
+    public void OpenStore()
     {
         StoreOpen = !StoreOpen;
         StoreAnimationController.SetTrigger("Select");
     }
 
-    void CloseStore()
+    public void CloseStore()
     {
         StoreAnimationController.SetTrigger("Select");
         StoreOpen = !StoreOpen;
@@ -191,9 +189,9 @@ public class StoreManager2 : MonoBehaviour
             themePanel.gameObject.SetActive(true);
         }
 
-      // Check if there are any scriptable objects listed under StoreThemeInventory
-    if (StoreThemeInventory != null && StoreThemeInventory.Count > 0)
-    {
+        // Check if there are any scriptable objects listed under StoreThemeInventory
+        if (StoreThemeInventory != null && StoreThemeInventory.Count > 0)
+        {
         // Loop through each scriptable object in StoreThemeInventory
         foreach (var theme in StoreThemeInventory)
         {
@@ -236,22 +234,44 @@ public class StoreManager2 : MonoBehaviour
 
         if (StoreItemInventory != null && StoreItemInventory.Count > 0)
         {
+            // Loop through each scriptable object in StoreThemeInventory
             foreach (var item in StoreItemInventory)
             {
-                GameObject InstantiatedItem = Instantiate (itemPrefab, itemPanel);
 
-                UIitems UIitems = InstantiatedItem.GetComponent<UIitems>();
+            // Instantiate the prefab from the ThemePrefab property
+            GameObject instantiatedItem = Instantiate(itemPrefab, itemPanel);
 
-                if (UIitems != null)
-                {
-                    UIitems.item = item;
-                }
+            // Access the UIsounds script within the instantiated prefab
+            UIitems UIitems = instantiatedItem.GetComponent<UIitems>();
+
+            // Set the 'theme' property of the UIsounds script to match the listed object
+            if (UIitems != null)
+            {
+
+                UIitems.GetComponent<Button>().onClick.AddListener(() => 
+                    {
+                        if (itemManager2 != null)
+                        {
+                            SendItemToItemManager(item);
+                            //Debug.LogError("Click_Theme");
+                            
+                        }
+                        else
+                        {
+                             Debug.LogError("No ItemManager within StoreManager ");
+                        }
+                    });
             }
+
+            // Place the instantiated item within the transform provided by the soundPanel property
+            instantiatedItem.transform.SetParent(themePanel, false);
+
+        }
+
+
         }
 
     }
-
-
 
 
     void PopulateSounds()
@@ -328,14 +348,23 @@ public class StoreManager2 : MonoBehaviour
         
     }
 
+    void SendItemToItemManager(SOitems item)
+    {
+         if (item.purchased == false)
+            {
+              itemManager2.AddItemToShopCartPreviewList(item);
+            }
+
+        if (item.purchased == true)
+        {
+          itemManager2.AddItemToSelectedList(item);  
+        }
+        
+    }
+
     public void ScrollToSection()
     {
         Canvas.ForceUpdateCanvases();
-        //
-
-        //RectTransform section = sections[sectionIndex];
-        //float targetY = (section.anchoredPosition.y + (section.rect.height / 2)) / scrollRect.content.rect.height;
-        //scrollRect.verticalNormalizedPosition = 1 - targetY;
     }
 
 }
