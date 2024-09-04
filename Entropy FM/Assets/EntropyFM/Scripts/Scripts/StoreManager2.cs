@@ -241,12 +241,13 @@ public class StoreManager2 : MonoBehaviour
             // Instantiate the prefab from the ThemePrefab property
             GameObject instantiatedItem = Instantiate(itemPrefab, itemPanel);
 
-            // Access the UIsounds script within the instantiated prefab
+            // Access the UIitems script within the instantiated prefab
             UIitems UIitems = instantiatedItem.GetComponent<UIitems>();
 
-            // Set the 'theme' property of the UIsounds script to match the listed object
+            // Set the 'item' property of the UIsounds script to match the listed object
             if (UIitems != null)
             {
+                UIitems.item = item;
 
                 UIitems.GetComponent<Button>().onClick.AddListener(() => 
                     {
@@ -264,7 +265,7 @@ public class StoreManager2 : MonoBehaviour
             }
 
             // Place the instantiated item within the transform provided by the soundPanel property
-            instantiatedItem.transform.SetParent(themePanel, false);
+            instantiatedItem.transform.SetParent(itemPanel, false);
 
         }
 

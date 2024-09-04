@@ -7,11 +7,11 @@ using TMPro;
 public class UIitems : MonoBehaviour
 {
 
-    public SOitems item;
+    [HideInInspector] public SOitems item;
     public TMP_Text nameTxt; 
     public TMP_Text costTxt; 
     public Image thumbnailImg;
-    // Start is called before the first frame update
+
     void Start()
     {
         nameTxt.text = item.name;

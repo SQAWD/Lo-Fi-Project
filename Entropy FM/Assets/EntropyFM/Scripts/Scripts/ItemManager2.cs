@@ -13,7 +13,7 @@ public class ItemManager2 : MonoBehaviour
     private int maxSounds = 1;
 
     [Header("Selected Theme Properties")]
-    public Material SelectedThemelayerOne;
+    public Material ThemeLayerOneMaterial;
     public Material SelectedThemelayerTwo;
     public Material SelectedThemelayerThree;
     public Material SelectedThemelayerFour; 
@@ -25,17 +25,15 @@ public class ItemManager2 : MonoBehaviour
     public GameObject SelectedThemeLayerFourGameObject;
     public GameObject SelectedThemeLayerFiveGameObject;
 
-    [SerializeField] float LayerOneScrollSpeed;
-
     private Layer1TextureOffset LayerOneTextureOffSetScript;
 
     [Header("Selected Sound Properties")]
     public AudioSource SelectedSound;
-    public int SoundPreviewTime;
+    public GameObject WeatherGameObject;
     public Image SelectedSoundFilter;
     public Material WeatherMaterial;
+    public int SoundPreviewTime;
     public int SpriteFrameRate = 25;
-    public GameObject Weather;
     private Material weatherMaterial;
 
     private Coroutine spriteSequenceCoroutine;
@@ -185,7 +183,7 @@ public class ItemManager2 : MonoBehaviour
 {
     LayerConfig[] layers = new LayerConfig[]
     {
-        new LayerConfig { IsEnabled = theme.LayerOneEnabled, LayerGameObject = SelectedThemeLayerOneGameObject, LayerMaterial = SelectedThemelayerOne, LayerTexture = theme.ThemelayerOne },
+        new LayerConfig { IsEnabled = theme.LayerOneEnabled, LayerGameObject = SelectedThemeLayerOneGameObject, LayerMaterial = ThemeLayerOneMaterial, LayerTexture = theme.ThemelayerOne },
         new LayerConfig { IsEnabled = theme.LayerTwoEnabled, LayerGameObject = SelectedThemeLayerTwoGameObject, LayerMaterial = SelectedThemelayerTwo, LayerTexture = theme.ThemelayerTwo },
         new LayerConfig { IsEnabled = theme.LayerThreeEnabled, LayerGameObject = SelectedThemeLayerThreeGameObject, LayerMaterial = SelectedThemelayerThree, LayerTexture = theme.ThemelayerThree },
         new LayerConfig { IsEnabled = theme.LayerFourEnabled, LayerGameObject = SelectedThemeLayerFourGameObject, LayerMaterial = SelectedThemelayerFour, LayerTexture = theme.ThemelayerFour },
@@ -253,11 +251,11 @@ public void AddSoundToSelectedList(SOsounds sound)
     // Ensure the Weather GameObject is active if there is a sprite filter
     if (sound.SoundFilterSprite != null && sound.SoundFilterSprite.Count > 0)
     {
-        Weather.SetActive(true);
+        WeatherGameObject.SetActive(true);
     }
     else
     {
-        Weather.SetActive(false);
+        WeatherGameObject.SetActive(false);
     }
 
     // Stop any existing sprite sequence before starting a new one
@@ -275,9 +273,9 @@ public void AddSoundToSelectedList(SOsounds sound)
     else
     {
         // Deactivate the Weather GameObject if animation is not enabled
-        if (Weather != null)
+        if (WeatherGameObject != null)
         {
-            Weather.SetActive(false);
+            WeatherGameObject.SetActive(false);
         }
     }
 
@@ -286,9 +284,9 @@ public void AddSoundToSelectedList(SOsounds sound)
 
     public void PlaySpriteSequenceOnMaterial(List<Sprite> sprites)
     {
-        if (Weather != null)
+        if (WeatherGameObject != null)
         {
-            Weather.SetActive(true);  // Ensure Weather is active when playing the sequence
+            WeatherGameObject.SetActive(true);  // Ensure Weather is active when playing the sequence
         }
 
         if (spriteSequenceCoroutine != null)

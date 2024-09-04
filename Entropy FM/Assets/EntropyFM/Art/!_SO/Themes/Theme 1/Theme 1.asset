@@ -16,7 +16,7 @@ MonoBehaviour:
   cost: 1200
   thumbnail: {fileID: 21300000, guid: 51ca5fe98ccd646f8b159f96f912429d, type: 3}
   itemID: wn6t37hcfrmhq08dzydt3
-  purchased: 1
+  purchased: 0
   selected: 0
   previewOn: 0
   LayerOneEnabled: 1
