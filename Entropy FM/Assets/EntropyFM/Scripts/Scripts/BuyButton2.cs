@@ -28,7 +28,7 @@ public class BuyButton2 : MonoBehaviour
 
     void Update()
     {
-        int CartCount = (ItemManager2.ShopCartPreviewSoundsList.Count + ItemManager2.ShopCartPreviewThemesList.Count);
+        int CartCount = (ItemManager2.ShopCartPreviewSoundsList.Count + ItemManager2.ShopCartPreviewThemesList.Count + ItemManager2.ShopCartPreviewItemsList.Count);
         ShopCartCountText.text = CartCount.ToString(); 
 
          if (CartCount > 0 && !HighlightBuyButtonUI)

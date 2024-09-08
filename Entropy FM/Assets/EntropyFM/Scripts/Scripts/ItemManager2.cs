@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
+using SpatialSys.UnitySDK;
+
 
 
 public class ItemManager2 : MonoBehaviour
@@ -13,6 +16,10 @@ public class ItemManager2 : MonoBehaviour
     private int maxSounds = 1;
 
     [Header("Selected Theme Properties")]
+    public string currentTheme;
+    private const string ThemeKey = "selectedThemeKey";
+    public SOthemes defaultTheme;
+
     public Material ThemeLayerOneMaterial;
     public Material SelectedThemelayerTwo;
     public Material SelectedThemelayerThree;
@@ -37,6 +44,11 @@ public class ItemManager2 : MonoBehaviour
     private Material weatherMaterial;
 
     private Coroutine spriteSequenceCoroutine;
+
+    [Header("Selected Item Properties")]
+    public GameObject InventoryItemPrefab;
+    public Transform ParentLayerForAllItems;
+    public InventorySlot[] InventorySceneSlots;
     
 
     [Header("Shopping Cart Preview Lists")]
@@ -68,10 +80,69 @@ public class ItemManager2 : MonoBehaviour
             SelectedThemesList[0].selected = true;
         }
 
+        LoadTheme();
+
 
     }
 
 #region  Themes
+
+      public void SetTheme(string themeName)
+    {
+        currentTheme = themeName;
+
+        // Save the selected theme to the data store
+        SpatialBridge.userWorldDataStoreService.SetVariable(ThemeKey, currentTheme).SetCompletedEvent((response) => {
+            Debug.Log("Theme saved: " + currentTheme);
+        });
+    }
+
+    public void LoadTheme()
+    {
+        // Load the saved theme from the data store
+        SpatialBridge.userWorldDataStoreService.GetVariable(ThemeKey, currentTheme).SetCompletedEvent((response) => {
+            if (!string.IsNullOrEmpty(response.stringValue))
+            {
+                currentTheme = response.stringValue;
+                ApplyTheme(currentTheme);
+                Debug.Log("UserData Loaded saved theme: " + currentTheme);
+            }
+            else
+            {
+                Debug.Log("UserData theme not found. Using default theme.");
+                ApplyDefaultTheme();
+            }
+        });
+    }
+
+     private void ApplyDefaultTheme()
+    {
+        if (defaultTheme != null)
+        {
+            UpdateAllLayers(defaultTheme);
+            currentTheme = defaultTheme.name;
+            Debug.Log("UserData Applied default theme: " + defaultTheme.name);
+        }
+        else
+        {
+            Debug.LogWarning("No default theme set.");
+        }
+    }
+
+    // This method applies the loaded theme
+    private void ApplyTheme(string themeName)
+    {
+        SOthemes savedTheme = SelectedThemesList.FirstOrDefault(t => t.name == themeName);
+        if (savedTheme != null)
+        {
+            UpdateAllLayers(savedTheme);
+            Debug.Log("Applied saved theme: " + themeName);
+        }
+        else
+        {
+            Debug.LogWarning("Saved theme not found in the list.");
+        }
+    }
 
     public void AddThemeToShopCartPreviewList(SOthemes theme)
     {
@@ -217,6 +288,7 @@ private void UpdateLayer(LayerConfig layerConfig)
 
 }
 
+
 #endregion 
 
 #region  Sounds
@@ -265,7 +337,7 @@ public void AddSoundToSelectedList(SOsounds sound)
     }
 
     // Check the FilterAnimation bool in the sound scriptable object
-    if (sound.FilterAnimation)
+    if (sound.EnableAnimation)
     {
         // Play the sprite sequence associated with the sound
         PlaySpriteSequenceOnMaterial(sound.SoundFilterSprite);
@@ -407,6 +479,9 @@ public void AddItemToShopCartPreviewList(SOitems item)
             StopCoroutine(itemPreviewCoroutine);
         }
 
+        AddItemToOpenInventorySlot(item);
+        //Debug.LogError("Item Sent To Shop CartPreview");
+
     }
 
     public void AddItemToSelectedList(SOitems items)
@@ -428,14 +503,101 @@ public void AddItemToShopCartPreviewList(SOitems item)
 
     // Set the selected property of the new sound to true
     items.selected = true;
-
-        
+    
+    AddItemToOpenInventorySlot(items);
+   
     }
 
+    public bool AddItemToOpenInventorySlot(SOitems item) {
+
+        item.ShowRemoveUIBool = true;
+
+        for (int i = 0; i < InventorySceneSlots.Length; i++)
+        {
+        InventorySlot slot = InventorySceneSlots[i];
+        InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+
+        // If the slot is empty, spawn the new item
+        if (itemInSlot == null)
+        {
+            SpawnNewItemToInventorySlot(item, slot);
+            return true;
+        }
+    }
+
+    return false;  // No empty slot was found
+
+    }
+
+    public void SpawnNewItemToInventorySlot(SOitems item, InventorySlot slot)
+    {
+        // Instantiate the new item in the slot
+        GameObject newItemGO = Instantiate(InventoryItemPrefab, slot.transform);
+
+        if (newItemGO == null)
+        {
+            Debug.LogError("Failed to instantiate InventoryItemPrefab.");
+            return;
+        }
+
+        // Get the InventoryItem component from the instantiated GameObject
+        InventoryItem inventoryItem = newItemGO.GetComponent<InventoryItem>();
+
+        // Ensure the InventoryItem component exists
+        if (inventoryItem == null)
+        {
+            Debug.LogError("InventoryItem component is missing on the instantiated prefab.");
+            return;
+        }
+
+        // Get the UIitems component from the same GameObject and assign it
+        UIitems uiItemsComponent = newItemGO.GetComponent<UIitems>();
+        if (uiItemsComponent != null)
+        {
+            uiItemsComponent.iteminSceneUIEnabled = true;
+            inventoryItem.UIitems = uiItemsComponent;
+
+            // Add a listener to the remove button to remove the item from the inventory when clicked
+            uiItemsComponent.removeitemButton.onClick.AddListener(() =>
+            {
+                RemoveItemFromSceneInventorySlot(item);  // Pass the associated item to be removed
+            });
+        }
+
+        // Assign the item to the inventory and initialize it
+        inventoryItem.specificParent = ParentLayerForAllItems;
+        inventoryItem.InitialiseItem(item);
+
+        Debug.Log("Item successfully instantiated in the slot.");
 
 
+    }
 
+  public void RemoveItemFromSceneInventorySlot(SOitems itemToRemove)
+{
+    // Loop through all the inventory slots
+    for (int i = 0; i < InventorySceneSlots.Length; i++)
+    {
+        InventorySlot slot = InventorySceneSlots[i];
+        
+        // Get the InventoryItem in the current slot
+        InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
 
+        // Check if there is an item in this slot and if it matches the item to remove
+        if (itemInSlot != null && itemInSlot.item == itemToRemove)
+        {
+            // Destroy the item GameObject in the scene
+            Destroy(itemInSlot.gameObject);
+
+            Debug.Log("Item has been removed from Scene");
+
+            return; // Exit after removing the item to avoid unnecessary loops
+        }
+
+    }
+
+    Debug.LogWarning("Item not found in any inventory slot.");
+}
 
 
 

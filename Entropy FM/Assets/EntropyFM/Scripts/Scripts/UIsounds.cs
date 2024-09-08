@@ -12,14 +12,12 @@ public class UIsounds : MonoBehaviour
     public TMP_Text costTxt;
     public Image thumbnailImg;
     public bool purchasedBool;
-
-    [Header("Bools")]
     public bool selectedBool;
     public bool previewBool;
 
     [Header("Game Objects")]
-    public GameObject costObject; 
-    public GameObject selectedObject;
+    public GameObject costGameObject; 
+    public GameObject selectedOutlineGameObject;
     public GameObject previewUI;
 
     // Start is called before the first frame update
@@ -62,12 +60,12 @@ public class UIsounds : MonoBehaviour
 
     void UpdateSelectedUI()
     {
-        selectedObject.SetActive(selectedBool);
+        selectedOutlineGameObject.SetActive(selectedBool);
     }
 
       void UpdateCostUI()
     {
-        costObject.SetActive(!purchasedBool);
+        costGameObject.SetActive(!purchasedBool);
     }
 
       void UpdatePreviewUI()

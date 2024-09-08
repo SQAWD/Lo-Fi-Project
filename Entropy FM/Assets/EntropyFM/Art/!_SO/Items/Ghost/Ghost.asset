@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a34d5f3ddb5c49e9bcef03dd7cd2aa1, type: 3}
-  m_Name: Candle
+  m_Name: Ghost
   m_EditorClassIdentifier: 
-  name: Candle
+  name: Ghost
   cost: 60
-  thumbnail: {fileID: 21300000, guid: cddd5fb77b40449d9936242074da2146, type: 3}
+  thumbnail: {fileID: 21300000, guid: d762ac23f0a2747fda7327551f1b58d3, type: 3}
   itemID: 
   purchased: 0
   selected: 0
   previewOn: 0
-  AnimationEnabled: 0
+  itemInSceneOn: 0
+  ShowRemoveUIBool: 1
+  AnimationEnabled: 1
   SoundFilterOverlayColor: {r: 1, g: 1, b: 1, a: 1}
   AnimationLocation: {x: 0, y: 0, z: 0}
   SpriteImageSequence:

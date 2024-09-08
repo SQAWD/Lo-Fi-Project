@@ -15,11 +15,11 @@ public class SOitems : ScriptableObject
     public bool previewOn;
 
     [Header("Item Properties")]
+    public bool ShowRemoveUIBool;
     public bool AnimationEnabled;
     public Color SoundFilterOverlayColor = Color.white;
     public Vector3 AnimationLocation;
     public List<Sprite> SpriteImageSequence;
-    
 
     // Start is called before the first frame update
     void Start()

@@ -10,6 +10,7 @@ public class StoreManager2 : MonoBehaviour
      public ThemeType selectedTheme;
     public KeyCode OpenStoreHotkey = KeyCode.B;
     public Button CloseStoreButton;
+    public Button RemoveItemFromSceneSlotButton;
     public bool StoreOpen;
     public ItemManager2 itemManager2;
     public Animator StoreAnimationController;
@@ -21,6 +22,7 @@ public class StoreManager2 : MonoBehaviour
      [Header("Store Prefabs")]
     public GameObject themePrefab;
     public GameObject itemPrefab;
+    public GameObject InventorySlotPrefab;
     public GameObject soundPrefab;
 
     [Header("Store Panels")]
@@ -238,8 +240,11 @@ public class StoreManager2 : MonoBehaviour
             foreach (var item in StoreItemInventory)
             {
 
+            // Instantiate the InventorySlotPrefab first
+            GameObject instantiatedSlot = Instantiate(InventorySlotPrefab, itemPanel);
+
             // Instantiate the prefab from the ThemePrefab property
-            GameObject instantiatedItem = Instantiate(itemPrefab, itemPanel);
+            GameObject instantiatedItem = Instantiate(itemPrefab, instantiatedSlot.transform);
 
             // Access the UIitems script within the instantiated prefab
             UIitems UIitems = instantiatedItem.GetComponent<UIitems>();
@@ -249,12 +254,13 @@ public class StoreManager2 : MonoBehaviour
             {
                 UIitems.item = item;
 
+
                 UIitems.GetComponent<Button>().onClick.AddListener(() => 
                     {
                         if (itemManager2 != null)
                         {
                             SendItemToItemManager(item);
-                            //Debug.LogError("Click_Theme");
+                            //Debug.LogError("Click_Item");
                             
                         }
                         else
@@ -262,10 +268,33 @@ public class StoreManager2 : MonoBehaviour
                              Debug.LogError("No ItemManager within StoreManager ");
                         }
                     });
+
+                UIitems.removeitemButton.onClick.AddListener(() =>
+                    {
+                        if (itemManager2 != null)
+                        {
+                            // Call RemoveItemFromSceneInventorySlot from ItemManager2
+                            itemManager2.RemoveItemFromSceneInventorySlot(item);
+                        }
+                        else
+                        {
+                            Debug.LogError("No ItemManager available to remove item from scene");
+                        }
+                    });
+
+                    
             }
 
-            // Place the instantiated item within the transform provided by the soundPanel property
-            instantiatedItem.transform.SetParent(itemPanel, false);
+            // Assign specificParent to ParentLayerForAllItems from ItemManager2
+            InventoryItem inventoryItem = instantiatedItem.GetComponent<InventoryItem>();
+            if (inventoryItem != null && itemManager2 != null)
+            {
+                inventoryItem.specificParent = itemManager2.ParentLayerForAllItems;
+            }
+
+             // Optionally, you can set other properties or styles to the instantiatedSlot or instantiatedItem here
+            instantiatedItem.transform.SetParent(instantiatedSlot.transform, false);
+            
 
         }
 
@@ -314,37 +343,30 @@ public class StoreManager2 : MonoBehaviour
 
     }
 
-
-    void ThemeToPreviewList(SOthemes theme)
-    {
-        itemManager2.AddThemeToShopCartPreviewList(theme);
-    }
-
-
-       void SendThemeToItemManager(SOthemes theme)
+    void SendThemeToItemManager(SOthemes theme)
     {
          if (theme.purchased == false)
-            {
-              itemManager2.AddThemeToShopCartPreviewList(theme);
-            }
+        {
+            itemManager2.AddThemeToShopCartPreviewList(theme);
+        }
 
         if (theme.purchased == true)
         {
-          itemManager2.AddThemeToSelectedList(theme);  
+            itemManager2.AddThemeToSelectedList(theme);  
         }
         
     }
     
     void SendSoundToItemManager(SOsounds sound)
     {
-         if (sound.purchased == false)
-            {
-              itemManager2.AddSoundToShopCartPreviewList(sound);
-            }
+        if (sound.purchased == false)
+        {
+            itemManager2.AddSoundToShopCartPreviewList(sound);
+        }
 
         if (sound.purchased == true)
         {
-          itemManager2.AddSoundToSelectedList(sound);  
+            itemManager2.AddSoundToSelectedList(sound);  
         }
         
     }
@@ -352,13 +374,14 @@ public class StoreManager2 : MonoBehaviour
     void SendItemToItemManager(SOitems item)
     {
          if (item.purchased == false)
-            {
-              itemManager2.AddItemToShopCartPreviewList(item);
-            }
+        {
+            itemManager2.AddItemToShopCartPreviewList(item);
+            //Debug.LogError("Item Sent To Shop CartPreview");
+        }
 
         if (item.purchased == true)
         {
-          itemManager2.AddItemToSelectedList(item);  
+            itemManager2.AddItemToSelectedList(item);  
         }
         
     }

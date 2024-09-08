@@ -1247,8 +1247,8 @@ MonoBehaviour:
   purchasedBool: 0
   selectedBool: 0
   previewBool: 0
-  costObject: {fileID: 3381423772456080270}
-  selectedObject: {fileID: 7848817703556055003}
+  costGameObject: {fileID: 3381423772456080270}
+  selectedOutlineGameObject: {fileID: 1002236891342365476}
   previewUI: {fileID: 8489431525239144379}
 --- !u!114 &7937109025862107078
 MonoBehaviour:
